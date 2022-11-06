@@ -1,51 +1,71 @@
+import hashlib
+import math
+
+# Source: https://medium.com/@meeusdylan/implementing-a-cuckoo-filter-in-go-147a5f1f7a9
+
+
 class Cuckoo:
 
-    def __init__(self, size, num_hash):
+    def __init__(self, n, fp, max_tries=500, b=4):
         """
         Initializes Cuckoo hash table
 
         Args:
-            size (int): size of the hash table
-            num_hash (int): max number of iterations before rehashing
+            n (int): number of elements to store
+            fp (float): false positive rate
 
         Returns:
-            Cuckoo: Cuckoo hash table
+            Cuckoo hash table
         """
-        self.size = size
-        self.num_keys = 0
-        self.rehash = 1
-        self.num_hash = num_hash
-        self.hash_table = [[None] * size, [None] * size]
+        self.b = b  # number of entries per bucket
+        self.f = self.fingerprintLength(4, fp)  # fingerprint length in bits
+        self.m = self.nextPower(n / fp * 8)  # number of buckets
+        self.fp = fp
+        self.table = [[None] * self.b for _ in range(self.m)]
+        self.max_tries = max_tries
 
-    def hash(self, key, table):
+    def fingerprintLength(self, k, fp):
         """
-        Hashes key using table
+        Returns fingerprint length in bits
+        """
+        return max(1, int(math.ceil(math.log(fp, 2) / k)))
+
+    def nextPower(self, i):
+        """
+        Returns next power of 2 greater than i
+        """
+        return 1 << (i - 1).bit_length()
+
+    def fingerprint(self, data):
+        """
+        Returns fingerprint of data
 
         Args:
-            key (str): key to hash
-            table (int): which hash table to use
+            data (str): data to fingerprint
 
         Returns:
-            int: index of hash table
+            int: fingerprint
         """
-        # TODO: update hashing function
-        if table == 0:
-            return key ** self.rehash % self.size
-        else:
-            return (key ** self.rehash // self.size) % self.size
+        return int(hashlib.sha256(data.encode('utf-8')).hexdigest(), 16) % (2**self.f)
 
-    def rehash(self):
+    def hash(self, data):
         """
-        Rehash all existing keys
-        """
-        self.rehash += 1
-        keys = [k for k in self.hash_table[0] if k != None] + \
-            [k for k in self.hash_table[1] if k != None]
-        self.hash_table = [[None] * self.size, [None] * self.size]
-        for k in keys:
-            self.insert(k)
+        Hashes data using SHA-256
 
-    def insert(self, key):
+        Args:
+            data (str): data to hash
+
+        Returns:
+            int: hash value
+        """
+        h = data.encode('utf-8').hexdigest(), 16
+        f = h[:self.f]
+        i1 = int(hashlib.sha256()) % self.m
+        i2 = i1 ^ int(hashlib.sha256(
+            f.encode('utf-8')).hexdigest(), 16) % self.m
+        return i1, i2, self.fingerprint(f)
+
+    def insert(self, data):
         """
         Inserts key into hash table
 
@@ -55,22 +75,24 @@ class Cuckoo:
         Returns:
             True if key is inserted, False otherwise
         """
-        table_idx = 0
-        if self.num_keys + 1 > self.size:  # cannot insert because table is full
-            return False
-        for _ in range(self.num_hash):
-            index = self.hash(key, table_idx)
-            if self.table[table_idx][index] == None:  # empty slot
-                self.hash_table[index] = key
-                self.num_keys += 1
-                return True
-            else:  # swap
-                temp = self.hash_table[table_idx][index]
-                self.hash_table[index] = key
-                key = temp
-                table_idx = 1 - table_idx
-        self.rehash()  # rehash all existing keys
-        self.insert(key)
+        i1, i2, f = self.hash(data)
+        for i in range(self.max_tries):
+            for i in range(self.b):  # find empty bucket in i1
+                if self.table[i1][i] is None:
+                    self.table[i1][i] = f
+                    return True
+            for i in range(self.b):  # find empty bucket in i2
+                if self.table[i2][i] is None:
+                    self.table[i2][i] = f
+                    return True
+            else:
+                if i % 2 == 0:
+                    f, self.table[i1] = self.table[i1], f
+                    i1 = i1 ^ f
+                else:
+                    f, self.table[i2] = self.table[i2], f
+                    i2 = i2 ^ f
+        return False  # cuckoo data structure is full, TODO: handle resizing
 
     def search(self, key):
         """
@@ -80,11 +102,16 @@ class Cuckoo:
             key (str): key to search for
 
         Returns:
-            True if key is in hash table, False otherwise
+            True if key is found, False otherwise
         """
-        for i in range(2):
-            index = self.hash(key, i)
-            if self.hash_table[i][index] == key:
+        i1, i2, f = self.hash(key)
+        b1 = self.table[i1]
+        b2 = self.table[i2]
+        for i in range(len(self.table[i1])):
+            if b1[i] == f:
+                return True
+        for i in range(len(self.table[i2])):
+            if b2[i] == f:
                 return True
         return False
 
@@ -98,9 +125,15 @@ class Cuckoo:
         Returns:
             True if key is deleted, False otherwise
         """
-        for i in range(2):
-            index = self.hash(key, i)
-            if self.hash_table[i][index] == key:
-                self.hash_table[i][index] = None
+        i1, i2, f = self.hash(key)
+        b1 = self.table[i1]
+        b2 = self.table[i2]
+        for i in range(len(self.table[i1])):
+            if b1[i] == f:
+                b1[i] = None
+                return True
+        for i in range(len(self.table[i2])):
+            if b2[i] == f:
+                b2[i] = None
                 return True
         return False
