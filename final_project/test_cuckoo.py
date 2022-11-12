@@ -20,10 +20,11 @@ def test_insert_full(cuckoo):
 
 
 def test_insert_overfilled(cuckoo):
-    for i in range(8000):
-        assert cuckoo.insert(str(i))
-    for i in range(8000):
-        assert cuckoo.search(str(i))
+    try:
+        for i in range(8000):
+            cuckoo.insert(str(i))
+    except Exception as e:
+        assert str(e) == "Reached max size"
 
 
 def test_not_there(cuckoo):
