@@ -34,7 +34,7 @@ class Cuckoo:
         """
         Returns next power of 2 greater than i
         """
-        return 1 << (i - 1).bit_length()
+        return 1 << int(i - 1).bit_length()
 
     def fingerprint(self, data):
         """
@@ -46,7 +46,8 @@ class Cuckoo:
         Returns:
             int: fingerprint
         """
-        return int(hashlib.sha256(data.encode('utf-8')).hexdigest(), 16) % (2**self.f)
+        hash = hashlib.sha256(data).hexdigest()
+        return hash[:self.f]
 
     def hash(self, data):
         """
@@ -58,12 +59,11 @@ class Cuckoo:
         Returns:
             int: hash value
         """
-        h = data.encode('utf-8').hexdigest(), 16
-        f = h[:self.f]
-        i1 = int(hashlib.sha256()) % self.m
-        i2 = i1 ^ int(hashlib.sha256(
-            f.encode('utf-8')).hexdigest(), 16) % self.m
-        return i1, i2, self.fingerprint(f)
+        h = data.encode('utf-8')
+        f = self.fingerprint(h)
+        i1 = int(hashlib.sha256(h).hexdigest(), 16) % self.m
+        i2 = i1 ^ int(hashlib.sha256(f.encode('utf-8')).hexdigest(), 16) % self.m
+        return i1, i2, f
 
     def insert(self, data):
         """
