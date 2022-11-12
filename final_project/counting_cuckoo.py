@@ -82,6 +82,7 @@ class Counting_Cuckoo:
             for i in range(self.b):  # find empty bucket in i1
                 if self.table[i1][i] is None:
                     self.table[i1][i] = (f, occ)
+                    print(self.table[i1])
                     return True
                 elif self.table[i1][i][0] == f:
                     self.table[i1][i][1] += 1 + occ
@@ -117,10 +118,10 @@ class Counting_Cuckoo:
         b1 = self.table[i1]
         b2 = self.table[i2]
         for i in range(len(self.table[i1])):
-            if b1[i] == f:
+            if b1[i] is not None and b1[i][0] == f:
                 return b1[i][1]
         for i in range(len(self.table[i2])):
-            if b2[i] == f:
+            if b2[i] is not None and b2[i][0] == f:
                 return b1[i][1]
         return 0
 
