@@ -23,6 +23,7 @@ class Cuckoo:
         self.fp = fp
         self.table = [[None] * self.b for _ in range(self.m)]
         self.max_tries = max_tries
+        print(self.b * self.m)
 
     def fingerprintLength(self, k, fp):
         """
@@ -62,7 +63,8 @@ class Cuckoo:
         h = data.encode('utf-8')
         f = self.fingerprint(h)
         i1 = int(hashlib.sha256(h).hexdigest(), 16) % self.m
-        i2 = i1 ^ int(hashlib.sha256(f.encode('utf-8')).hexdigest(), 16) % self.m
+        i2 = i1 ^ int(hashlib.sha256(
+            f.encode('utf-8')).hexdigest(), 16) % self.m
         return i1, i2, f
 
     def insert(self, data):
@@ -87,11 +89,13 @@ class Cuckoo:
                     return True
             else:
                 if i % 2 == 0:
-                    f, self.table[i1] = self.table[i1], f
-                    i1 = i1 ^ f
+                    f, self.table[i1][i] = self.table[i1][i], f
+                    i1 = i1 ^ int(hashlib.sha256(
+                        f.encode('utf-8')).hexdigest(), 16) % self.m
                 else:
-                    f, self.table[i2] = self.table[i2], f
-                    i2 = i2 ^ f
+                    f, self.table[i2][i] = self.table[i2][i], f
+                    i2 = i2 ^ int(hashlib.sha256(
+                        f.encode('utf-8')).hexdigest(), 16) % self.m
         return False  # cuckoo data structure is full, TODO: handle resizing
 
     def search(self, key):

@@ -63,7 +63,8 @@ class Counting_Cuckoo:
         h = data.encode('utf-8')
         f = self.fingerprint(h)
         i1 = int(hashlib.sha256(h).hexdigest(), 16) % self.m
-        i2 = i1 ^ int(hashlib.sha256(f.encode('utf-8')).hexdigest(), 16) % self.m
+        i2 = i1 ^ int(hashlib.sha256(
+            f.encode('utf-8')).hexdigest(), 16) % self.m
         return i1, i2, f
 
     def insert(self, data):
@@ -95,13 +96,14 @@ class Counting_Cuckoo:
                     self.table[i2][i][1] += 1 + occ
                     return True
             else:
-                ind = random.randint(0, self.b - 1)
                 if i % 2 == 0:
-                    f, occ, self.table[i1][ind] = self.table[i1][ind][0], self.table[i1][ind][1], (f, occ)
-                    i1 = i1 ^ f
+                    f, self.table[i1][i] = self.table[i1][i], f
+                    i1 = i1 ^ int(hashlib.sha256(
+                        f.encode('utf-8')).hexdigest(), 16) % self.m
                 else:
-                    f, occ, self.table[i2][ind] = self.table[i2][ind][0], self.table[i2][ind][1], (f, occ)
-                    i2 = i2 ^ f
+                    f, self.table[i2][i] = self.table[i2][i], f
+                    i2 = i2 ^ int(hashlib.sha256(
+                        f.encode('utf-8')).hexdigest(), 16) % self.m
         return False  # cuckoo data structure is full, TODO: handle resizing
 
     def search(self, key):
