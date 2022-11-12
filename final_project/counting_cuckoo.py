@@ -83,25 +83,24 @@ class Counting_Cuckoo:
             for i in range(self.b):  # find empty bucket in i1
                 if self.table[i1][i] is None:
                     self.table[i1][i] = (f, occ)
-                    print(self.table[i1])
                     return True
                 elif self.table[i1][i][0] == f:
-                    self.table[i1][i][1] += 1 + occ
+                    self.table[i1][i] = (f, 1 + occ)
                     return True
             for i in range(self.b):  # find empty bucket in i2
                 if self.table[i2][i] is None:
                     self.table[i2][i] = (f, occ)
                     return True
                 elif self.table[i2][i][0] == f:
-                    self.table[i2][i][1] += 1 + occ
+                    self.table[i2][i] = (f, 1 + occ)
                     return True
             else:
                 if i % 2 == 0:
-                    f, self.table[i1][i] = self.table[i1][i], f
+                    (f, occ), self.table[i1][i] = self.table[i1][i], (f, occ)
                     i1 = i1 ^ int(hashlib.sha256(
                         f.encode('utf-8')).hexdigest(), 16) % self.m
                 else:
-                    f, self.table[i2][i] = self.table[i2][i], f
+                    (f, occ), self.table[i2][i] = self.table[i2][i], (f, occ)
                     i2 = i2 ^ int(hashlib.sha256(
                         f.encode('utf-8')).hexdigest(), 16) % self.m
         # cuckoo data structure is full, TODO: handle resizing
