@@ -34,6 +34,7 @@ def test_delete_false(cuckoo):
     assert cuckoo.delete("test") == False
 
 
-# def test_delete_true(cuckoo):
-#     cuckoo.insert("test")
-#     assert cuckoo.delete("test")
+def test_delete_true(cuckoo):
+    cuckoo.insert("test")
+    assert cuckoo.search("test")
+    assert cuckoo.delete("test")

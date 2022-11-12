@@ -104,7 +104,8 @@ class Counting_Cuckoo:
                     f, self.table[i2][i] = self.table[i2][i], f
                     i2 = i2 ^ int(hashlib.sha256(
                         f.encode('utf-8')).hexdigest(), 16) % self.m
-        return False  # cuckoo data structure is full, TODO: handle resizing
+        # cuckoo data structure is full, TODO: handle resizing
+        raise Exception('Reached max size')
 
     def search(self, key):
         """
@@ -124,7 +125,7 @@ class Counting_Cuckoo:
                 return b1[i][1]
         for i in range(len(self.table[i2])):
             if b2[i] is not None and b2[i][0] == f:
-                return b1[i][1]
+                return b2[i][1]
         return 0
 
     def delete(self, key):
@@ -141,11 +142,11 @@ class Counting_Cuckoo:
         b1 = self.table[i1]
         b2 = self.table[i2]
         for i in range(len(self.table[i1])):
-            if b1[i] == f:
+            if b1[i] is not None and b1[i][0] == f:
                 b1[i] = None
                 return True
         for i in range(len(self.table[i2])):
-            if b2[i] == f:
+            if b2[i] is not None and b2[i][0] == f:
                 b2[i] = None
                 return True
         return False
