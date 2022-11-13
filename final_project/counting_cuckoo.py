@@ -14,6 +14,7 @@ class Counting_Cuckoo:
         Args:
             n (int): number of elements to store
             fp (float): false positive rate
+            b (int): number of entries per bucket
 
         Returns:
             Cuckoo hash table
