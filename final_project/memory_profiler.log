@@ -2,959 +2,1099 @@ Filename: memory_benchmark.py
 
 Line #    Mem usage    Increment  Occurrences   Line Contents
 =============================================================
-    12     49.5 MiB     49.5 MiB           1   @profile(stream=fp)
-    13                                         def make_cuckoo(n):#instantiate structure
-    14     49.5 MiB      0.0 MiB           1       return Cuckoo(n, 3)
+    31     53.8 MiB     53.8 MiB           1   @profile(stream=fp)
+    32                                         def make_cuckoo(n):#instantiate structure
+    33     53.8 MiB      0.0 MiB           1       return Counting_Cuckoo(n, 3)
 
 
 Filename: memory_benchmark.py
 
 Line #    Mem usage    Increment  Occurrences   Line Contents
 =============================================================
-    17     49.5 MiB     49.5 MiB           1   @profile(stream=fp)
-    18                                         def cuckoo_insert_random_numbers(cuckoo,n): # insert until cuckoo is full
-    19                                             #insert a set of kmers into the cuckoo
-    20                                             
-    21     49.5 MiB      0.0 MiB           1       for i in range(0,n):
-    22                                                 cuckoo.insert(str(random.getrandbits(64)))#test with random 64 bit ints
+    36     53.8 MiB     53.8 MiB           1   @profile(stream=fp)
+    37                                         def cuckoo_insert_random_numbers(cuckoo,n): # insert until cuckoo is full
+    38                                             #insert a set of kmers into the cuckoo
+    39                                             
+    40     53.8 MiB      0.0 MiB           1       for i in range(0,n):
+    41                                                 # cuckoo.insert(str(random.getrandbits(64)))#test with random 64 bit ints
+    42                                                 cuckoo.insert(fa[i])
 
 
 Filename: memory_benchmark.py
 
 Line #    Mem usage    Increment  Occurrences   Line Contents
 =============================================================
-    12     49.5 MiB     49.5 MiB           1   @profile(stream=fp)
-    13                                         def make_cuckoo(n):#instantiate structure
-    14     52.7 MiB      3.2 MiB           1       return Cuckoo(n, 3)
+    31     53.8 MiB     53.8 MiB           1   @profile(stream=fp)
+    32                                         def make_cuckoo(n):#instantiate structure
+    33     54.1 MiB      0.3 MiB           1       return Counting_Cuckoo(n, 3)
 
 
 Filename: memory_benchmark.py
 
 Line #    Mem usage    Increment  Occurrences   Line Contents
 =============================================================
-    17     52.7 MiB     52.7 MiB           1   @profile(stream=fp)
-    18                                         def cuckoo_insert_random_numbers(cuckoo,n): # insert until cuckoo is full
-    19                                             #insert a set of kmers into the cuckoo
-    20                                             
-    21     52.7 MiB      0.0 MiB       10001       for i in range(0,n):
-    22     52.7 MiB      0.0 MiB       10000           cuckoo.insert(str(random.getrandbits(64)))#test with random 64 bit ints
+    36     54.1 MiB     54.1 MiB           1   @profile(stream=fp)
+    37                                         def cuckoo_insert_random_numbers(cuckoo,n): # insert until cuckoo is full
+    38                                             #insert a set of kmers into the cuckoo
+    39                                             
+    40     54.2 MiB      0.1 MiB        1001       for i in range(0,n):
+    41                                                 # cuckoo.insert(str(random.getrandbits(64)))#test with random 64 bit ints
+    42     54.2 MiB      0.0 MiB        1000           cuckoo.insert(fa[i])
 
 
 Filename: memory_benchmark.py
 
 Line #    Mem usage    Increment  Occurrences   Line Contents
 =============================================================
-    12     52.7 MiB     52.7 MiB           1   @profile(stream=fp)
-    13                                         def make_cuckoo(n):#instantiate structure
-    14     59.3 MiB      6.6 MiB           1       return Cuckoo(n, 3)
+    31     54.2 MiB     54.2 MiB           1   @profile(stream=fp)
+    32                                         def make_cuckoo(n):#instantiate structure
+    33     55.0 MiB      0.8 MiB           1       return Counting_Cuckoo(n, 3)
 
 
 Filename: memory_benchmark.py
 
 Line #    Mem usage    Increment  Occurrences   Line Contents
 =============================================================
-    17     56.8 MiB     56.8 MiB           1   @profile(stream=fp)
-    18                                         def cuckoo_insert_random_numbers(cuckoo,n): # insert until cuckoo is full
-    19                                             #insert a set of kmers into the cuckoo
-    20                                             
-    21     56.8 MiB      0.0 MiB       20001       for i in range(0,n):
-    22     56.8 MiB      0.0 MiB       20000           cuckoo.insert(str(random.getrandbits(64)))#test with random 64 bit ints
+    36     54.8 MiB     54.8 MiB           1   @profile(stream=fp)
+    37                                         def cuckoo_insert_random_numbers(cuckoo,n): # insert until cuckoo is full
+    38                                             #insert a set of kmers into the cuckoo
+    39                                             
+    40     54.8 MiB      0.0 MiB        2001       for i in range(0,n):
+    41                                                 # cuckoo.insert(str(random.getrandbits(64)))#test with random 64 bit ints
+    42     54.8 MiB      0.0 MiB        2000           cuckoo.insert(fa[i])
 
 
 Filename: memory_benchmark.py
 
 Line #    Mem usage    Increment  Occurrences   Line Contents
 =============================================================
-    12     56.8 MiB     56.8 MiB           1   @profile(stream=fp)
-    13                                         def make_cuckoo(n):#instantiate structure
-    14     70.1 MiB     13.3 MiB           1       return Cuckoo(n, 3)
+    31     54.8 MiB     54.8 MiB           1   @profile(stream=fp)
+    32                                         def make_cuckoo(n):#instantiate structure
+    33     55.5 MiB      0.7 MiB           1       return Counting_Cuckoo(n, 3)
 
 
 Filename: memory_benchmark.py
 
 Line #    Mem usage    Increment  Occurrences   Line Contents
 =============================================================
-    17     62.8 MiB     62.8 MiB           1   @profile(stream=fp)
-    18                                         def cuckoo_insert_random_numbers(cuckoo,n): # insert until cuckoo is full
-    19                                             #insert a set of kmers into the cuckoo
-    20                                             
-    21     62.8 MiB      0.0 MiB       30001       for i in range(0,n):
-    22     62.8 MiB      0.0 MiB       30000           cuckoo.insert(str(random.getrandbits(64)))#test with random 64 bit ints
+    36     55.0 MiB     55.0 MiB           1   @profile(stream=fp)
+    37                                         def cuckoo_insert_random_numbers(cuckoo,n): # insert until cuckoo is full
+    38                                             #insert a set of kmers into the cuckoo
+    39                                             
+    40     55.0 MiB      0.0 MiB        3001       for i in range(0,n):
+    41                                                 # cuckoo.insert(str(random.getrandbits(64)))#test with random 64 bit ints
+    42     55.0 MiB      0.0 MiB        3000           cuckoo.insert(fa[i])
 
 
 Filename: memory_benchmark.py
 
 Line #    Mem usage    Increment  Occurrences   Line Contents
 =============================================================
-    12     62.8 MiB     62.8 MiB           1   @profile(stream=fp)
-    13                                         def make_cuckoo(n):#instantiate structure
-    14     76.5 MiB     13.8 MiB           1       return Cuckoo(n, 3)
+    31     55.0 MiB     55.0 MiB           1   @profile(stream=fp)
+    32                                         def make_cuckoo(n):#instantiate structure
+    33     56.5 MiB      1.5 MiB           1       return Counting_Cuckoo(n, 3)
 
 
 Filename: memory_benchmark.py
 
 Line #    Mem usage    Increment  Occurrences   Line Contents
 =============================================================
-    17     64.3 MiB     64.3 MiB           1   @profile(stream=fp)
-    18                                         def cuckoo_insert_random_numbers(cuckoo,n): # insert until cuckoo is full
-    19                                             #insert a set of kmers into the cuckoo
-    20                                             
-    21     64.3 MiB      0.0 MiB       40001       for i in range(0,n):
-    22     64.3 MiB      0.0 MiB       40000           cuckoo.insert(str(random.getrandbits(64)))#test with random 64 bit ints
+    36     56.0 MiB     56.0 MiB           1   @profile(stream=fp)
+    37                                         def cuckoo_insert_random_numbers(cuckoo,n): # insert until cuckoo is full
+    38                                             #insert a set of kmers into the cuckoo
+    39                                             
+    40     56.0 MiB      0.0 MiB        4001       for i in range(0,n):
+    41                                                 # cuckoo.insert(str(random.getrandbits(64)))#test with random 64 bit ints
+    42     56.0 MiB      0.0 MiB        4000           cuckoo.insert(fa[i])
 
 
 Filename: memory_benchmark.py
 
 Line #    Mem usage    Increment  Occurrences   Line Contents
 =============================================================
-    12     64.3 MiB     64.3 MiB           1   @profile(stream=fp)
-    13                                         def make_cuckoo(n):#instantiate structure
-    14     90.7 MiB     26.5 MiB           1       return Cuckoo(n, 3)
+    31     56.0 MiB     56.0 MiB           1   @profile(stream=fp)
+    32                                         def make_cuckoo(n):#instantiate structure
+    33     57.4 MiB      1.4 MiB           1       return Counting_Cuckoo(n, 3)
 
 
 Filename: memory_benchmark.py
 
 Line #    Mem usage    Increment  Occurrences   Line Contents
 =============================================================
-    17     77.7 MiB     77.7 MiB           1   @profile(stream=fp)
-    18                                         def cuckoo_insert_random_numbers(cuckoo,n): # insert until cuckoo is full
-    19                                             #insert a set of kmers into the cuckoo
-    20                                             
-    21     77.7 MiB      0.0 MiB       50001       for i in range(0,n):
-    22     77.7 MiB      0.0 MiB       50000           cuckoo.insert(str(random.getrandbits(64)))#test with random 64 bit ints
+    36     56.4 MiB     56.4 MiB           1   @profile(stream=fp)
+    37                                         def cuckoo_insert_random_numbers(cuckoo,n): # insert until cuckoo is full
+    38                                             #insert a set of kmers into the cuckoo
+    39                                             
+    40     56.4 MiB      0.0 MiB        5001       for i in range(0,n):
+    41                                                 # cuckoo.insert(str(random.getrandbits(64)))#test with random 64 bit ints
+    42     56.4 MiB      0.0 MiB        5000           cuckoo.insert(fa[i])
 
 
 Filename: memory_benchmark.py
 
 Line #    Mem usage    Increment  Occurrences   Line Contents
 =============================================================
-    12     77.7 MiB     77.7 MiB           1   @profile(stream=fp)
-    13                                         def make_cuckoo(n):#instantiate structure
-    14    103.9 MiB     26.2 MiB           1       return Cuckoo(n, 3)
+    31     56.4 MiB     56.4 MiB           1   @profile(stream=fp)
+    32                                         def make_cuckoo(n):#instantiate structure
+    33     57.5 MiB      1.0 MiB           1       return Counting_Cuckoo(n, 3)
 
 
 Filename: memory_benchmark.py
 
 Line #    Mem usage    Increment  Occurrences   Line Contents
 =============================================================
-    17     78.9 MiB     78.9 MiB           1   @profile(stream=fp)
-    18                                         def cuckoo_insert_random_numbers(cuckoo,n): # insert until cuckoo is full
-    19                                             #insert a set of kmers into the cuckoo
-    20                                             
-    21     78.9 MiB      0.0 MiB       60001       for i in range(0,n):
-    22     78.9 MiB      0.0 MiB       60000           cuckoo.insert(str(random.getrandbits(64)))#test with random 64 bit ints
+    36     56.5 MiB     56.5 MiB           1   @profile(stream=fp)
+    37                                         def cuckoo_insert_random_numbers(cuckoo,n): # insert until cuckoo is full
+    38                                             #insert a set of kmers into the cuckoo
+    39                                             
+    40     56.5 MiB      0.0 MiB        6001       for i in range(0,n):
+    41                                                 # cuckoo.insert(str(random.getrandbits(64)))#test with random 64 bit ints
+    42     56.5 MiB      0.0 MiB        6000           cuckoo.insert(fa[i])
 
 
 Filename: memory_benchmark.py
 
 Line #    Mem usage    Increment  Occurrences   Line Contents
 =============================================================
-    12     78.9 MiB     78.9 MiB           1   @profile(stream=fp)
-    13                                         def make_cuckoo(n):#instantiate structure
-    14    103.3 MiB     24.4 MiB           1       return Cuckoo(n, 3)
+    31     56.5 MiB     56.5 MiB           1   @profile(stream=fp)
+    32                                         def make_cuckoo(n):#instantiate structure
+    33     59.1 MiB      2.6 MiB           1       return Counting_Cuckoo(n, 3)
 
 
 Filename: memory_benchmark.py
 
 Line #    Mem usage    Increment  Occurrences   Line Contents
 =============================================================
-    17     77.5 MiB     77.5 MiB           1   @profile(stream=fp)
-    18                                         def cuckoo_insert_random_numbers(cuckoo,n): # insert until cuckoo is full
-    19                                             #insert a set of kmers into the cuckoo
-    20                                             
-    21     77.5 MiB      0.0 MiB       70001       for i in range(0,n):
-    22     77.5 MiB      0.0 MiB       70000           cuckoo.insert(str(random.getrandbits(64)))#test with random 64 bit ints
+    36     58.3 MiB     58.3 MiB           1   @profile(stream=fp)
+    37                                         def cuckoo_insert_random_numbers(cuckoo,n): # insert until cuckoo is full
+    38                                             #insert a set of kmers into the cuckoo
+    39                                             
+    40     58.3 MiB      0.0 MiB        7001       for i in range(0,n):
+    41                                                 # cuckoo.insert(str(random.getrandbits(64)))#test with random 64 bit ints
+    42     58.3 MiB      0.0 MiB        7000           cuckoo.insert(fa[i])
 
 
 Filename: memory_benchmark.py
 
 Line #    Mem usage    Increment  Occurrences   Line Contents
 =============================================================
-    12     77.5 MiB     77.5 MiB           1   @profile(stream=fp)
-    13                                         def make_cuckoo(n):#instantiate structure
-    14    103.3 MiB     25.8 MiB           1       return Cuckoo(n, 3)
+    31     58.3 MiB     58.3 MiB           1   @profile(stream=fp)
+    32                                         def make_cuckoo(n):#instantiate structure
+    33     60.9 MiB      2.6 MiB           1       return Counting_Cuckoo(n, 3)
 
 
 Filename: memory_benchmark.py
 
 Line #    Mem usage    Increment  Occurrences   Line Contents
 =============================================================
-    17     80.5 MiB     80.5 MiB           1   @profile(stream=fp)
-    18                                         def cuckoo_insert_random_numbers(cuckoo,n): # insert until cuckoo is full
-    19                                             #insert a set of kmers into the cuckoo
-    20                                             
-    21     80.5 MiB      0.0 MiB       80001       for i in range(0,n):
-    22     80.5 MiB      0.0 MiB       80000           cuckoo.insert(str(random.getrandbits(64)))#test with random 64 bit ints
+    36     58.4 MiB     58.4 MiB           1   @profile(stream=fp)
+    37                                         def cuckoo_insert_random_numbers(cuckoo,n): # insert until cuckoo is full
+    38                                             #insert a set of kmers into the cuckoo
+    39                                             
+    40     58.4 MiB      0.0 MiB        8001       for i in range(0,n):
+    41                                                 # cuckoo.insert(str(random.getrandbits(64)))#test with random 64 bit ints
+    42     58.4 MiB      0.0 MiB        8000           cuckoo.insert(fa[i])
 
 
 Filename: memory_benchmark.py
 
 Line #    Mem usage    Increment  Occurrences   Line Contents
 =============================================================
-    12     80.5 MiB     80.5 MiB           1   @profile(stream=fp)
-    13                                         def make_cuckoo(n):#instantiate structure
-    14    103.3 MiB     22.8 MiB           1       return Cuckoo(n, 3)
+    31     58.4 MiB     58.4 MiB           1   @profile(stream=fp)
+    32                                         def make_cuckoo(n):#instantiate structure
+    33     61.0 MiB      2.6 MiB           1       return Counting_Cuckoo(n, 3)
 
 
 Filename: memory_benchmark.py
 
 Line #    Mem usage    Increment  Occurrences   Line Contents
 =============================================================
-    17     79.8 MiB     79.8 MiB           1   @profile(stream=fp)
-    18                                         def cuckoo_insert_random_numbers(cuckoo,n): # insert until cuckoo is full
-    19                                             #insert a set of kmers into the cuckoo
-    20                                             
-    21     79.8 MiB      0.0 MiB       90001       for i in range(0,n):
-    22     79.8 MiB      0.0 MiB       90000           cuckoo.insert(str(random.getrandbits(64)))#test with random 64 bit ints
+    36     59.0 MiB     59.0 MiB           1   @profile(stream=fp)
+    37                                         def cuckoo_insert_random_numbers(cuckoo,n): # insert until cuckoo is full
+    38                                             #insert a set of kmers into the cuckoo
+    39                                             
+    40     59.0 MiB      0.0 MiB        9001       for i in range(0,n):
+    41                                                 # cuckoo.insert(str(random.getrandbits(64)))#test with random 64 bit ints
+    42     59.0 MiB      0.0 MiB        9000           cuckoo.insert(fa[i])
 
 
 Filename: memory_benchmark.py
 
 Line #    Mem usage    Increment  Occurrences   Line Contents
 =============================================================
-    12     79.8 MiB     79.8 MiB           1   @profile(stream=fp)
-    13                                         def make_cuckoo(n):#instantiate structure
-    14    132.2 MiB     52.4 MiB           1       return Cuckoo(n, 3)
+    31     59.0 MiB     59.0 MiB           1   @profile(stream=fp)
+    32                                         def make_cuckoo(n):#instantiate structure
+    33     61.0 MiB      2.1 MiB           1       return Counting_Cuckoo(n, 3)
 
 
 Filename: memory_benchmark.py
 
 Line #    Mem usage    Increment  Occurrences   Line Contents
 =============================================================
-    17    105.3 MiB    105.3 MiB           1   @profile(stream=fp)
-    18                                         def cuckoo_insert_random_numbers(cuckoo,n): # insert until cuckoo is full
-    19                                             #insert a set of kmers into the cuckoo
-    20                                             
-    21    105.3 MiB      0.0 MiB      100001       for i in range(0,n):
-    22    105.3 MiB      0.0 MiB      100000           cuckoo.insert(str(random.getrandbits(64)))#test with random 64 bit ints
+    36     58.8 MiB     58.8 MiB           1   @profile(stream=fp)
+    37                                         def cuckoo_insert_random_numbers(cuckoo,n): # insert until cuckoo is full
+    38                                             #insert a set of kmers into the cuckoo
+    39                                             
+    40     58.8 MiB      0.0 MiB       10001       for i in range(0,n):
+    41                                                 # cuckoo.insert(str(random.getrandbits(64)))#test with random 64 bit ints
+    42     58.8 MiB      0.0 MiB       10000           cuckoo.insert(fa[i])
 
 
 Filename: memory_benchmark.py
 
 Line #    Mem usage    Increment  Occurrences   Line Contents
 =============================================================
-    12    105.0 MiB    105.0 MiB           1   @profile(stream=fp)
-    13                                         def make_cuckoo(n):#instantiate structure
-    14    158.6 MiB     53.6 MiB           1       return Cuckoo(n, 3)
+    31     58.8 MiB     58.8 MiB           1   @profile(stream=fp)
+    32                                         def make_cuckoo(n):#instantiate structure
+    33     61.1 MiB      2.3 MiB           1       return Counting_Cuckoo(n, 3)
 
 
 Filename: memory_benchmark.py
 
 Line #    Mem usage    Increment  Occurrences   Line Contents
 =============================================================
-    17    106.8 MiB    106.8 MiB           1   @profile(stream=fp)
-    18                                         def cuckoo_insert_random_numbers(cuckoo,n): # insert until cuckoo is full
-    19                                             #insert a set of kmers into the cuckoo
-    20                                             
-    21    106.8 MiB      0.0 MiB      110001       for i in range(0,n):
-    22    106.8 MiB      0.0 MiB      110000           cuckoo.insert(str(random.getrandbits(64)))#test with random 64 bit ints
+    36     59.1 MiB     59.1 MiB           1   @profile(stream=fp)
+    37                                         def cuckoo_insert_random_numbers(cuckoo,n): # insert until cuckoo is full
+    38                                             #insert a set of kmers into the cuckoo
+    39                                             
+    40     59.1 MiB      0.0 MiB       11001       for i in range(0,n):
+    41                                                 # cuckoo.insert(str(random.getrandbits(64)))#test with random 64 bit ints
+    42     59.1 MiB      0.0 MiB       11000           cuckoo.insert(fa[i])
 
 
 Filename: memory_benchmark.py
 
 Line #    Mem usage    Increment  Occurrences   Line Contents
 =============================================================
-    12    106.8 MiB    106.8 MiB           1   @profile(stream=fp)
-    13                                         def make_cuckoo(n):#instantiate structure
-    14    156.0 MiB     49.2 MiB           1       return Cuckoo(n, 3)
+    31     59.1 MiB     59.1 MiB           1   @profile(stream=fp)
+    32                                         def make_cuckoo(n):#instantiate structure
+    33     61.2 MiB      2.1 MiB           1       return Counting_Cuckoo(n, 3)
 
 
 Filename: memory_benchmark.py
 
 Line #    Mem usage    Increment  Occurrences   Line Contents
 =============================================================
-    17    105.3 MiB    105.3 MiB           1   @profile(stream=fp)
-    18                                         def cuckoo_insert_random_numbers(cuckoo,n): # insert until cuckoo is full
-    19                                             #insert a set of kmers into the cuckoo
-    20                                             
-    21    105.3 MiB      0.0 MiB      120001       for i in range(0,n):
-    22    105.3 MiB      0.0 MiB      120000           cuckoo.insert(str(random.getrandbits(64)))#test with random 64 bit ints
+    36     59.2 MiB     59.2 MiB           1   @profile(stream=fp)
+    37                                         def cuckoo_insert_random_numbers(cuckoo,n): # insert until cuckoo is full
+    38                                             #insert a set of kmers into the cuckoo
+    39                                             
+    40     59.2 MiB      0.0 MiB       12001       for i in range(0,n):
+    41                                                 # cuckoo.insert(str(random.getrandbits(64)))#test with random 64 bit ints
+    42     59.2 MiB      0.0 MiB       12000           cuckoo.insert(fa[i])
 
 
 Filename: memory_benchmark.py
 
 Line #    Mem usage    Increment  Occurrences   Line Contents
 =============================================================
-    12    105.3 MiB    105.3 MiB           1   @profile(stream=fp)
-    13                                         def make_cuckoo(n):#instantiate structure
-    14    156.0 MiB     50.8 MiB           1       return Cuckoo(n, 3)
+    31     59.2 MiB     59.2 MiB           1   @profile(stream=fp)
+    32                                         def make_cuckoo(n):#instantiate structure
+    33     64.7 MiB      5.5 MiB           1       return Counting_Cuckoo(n, 3)
 
 
 Filename: memory_benchmark.py
 
 Line #    Mem usage    Increment  Occurrences   Line Contents
 =============================================================
-    17    108.5 MiB    108.5 MiB           1   @profile(stream=fp)
-    18                                         def cuckoo_insert_random_numbers(cuckoo,n): # insert until cuckoo is full
-    19                                             #insert a set of kmers into the cuckoo
-    20                                             
-    21    108.5 MiB      0.0 MiB      130001       for i in range(0,n):
-    22    108.5 MiB      0.0 MiB      130000           cuckoo.insert(str(random.getrandbits(64)))#test with random 64 bit ints
+    36     62.9 MiB     62.9 MiB           1   @profile(stream=fp)
+    37                                         def cuckoo_insert_random_numbers(cuckoo,n): # insert until cuckoo is full
+    38                                             #insert a set of kmers into the cuckoo
+    39                                             
+    40     62.9 MiB      0.0 MiB       13001       for i in range(0,n):
+    41                                                 # cuckoo.insert(str(random.getrandbits(64)))#test with random 64 bit ints
+    42     62.9 MiB      0.0 MiB       13000           cuckoo.insert(fa[i])
 
 
 Filename: memory_benchmark.py
 
 Line #    Mem usage    Increment  Occurrences   Line Contents
 =============================================================
-    12    108.5 MiB    108.5 MiB           1   @profile(stream=fp)
-    13                                         def make_cuckoo(n):#instantiate structure
-    14    156.0 MiB     47.5 MiB           1       return Cuckoo(n, 3)
+    31     62.9 MiB     62.9 MiB           1   @profile(stream=fp)
+    32                                         def make_cuckoo(n):#instantiate structure
+    33     68.3 MiB      5.4 MiB           1       return Counting_Cuckoo(n, 3)
 
 
 Filename: memory_benchmark.py
 
 Line #    Mem usage    Increment  Occurrences   Line Contents
 =============================================================
-    17    109.5 MiB    109.5 MiB           1   @profile(stream=fp)
-    18                                         def cuckoo_insert_random_numbers(cuckoo,n): # insert until cuckoo is full
-    19                                             #insert a set of kmers into the cuckoo
-    20                                             
-    21    109.5 MiB      0.0 MiB      140001       for i in range(0,n):
-    22    109.5 MiB      0.0 MiB      140000           cuckoo.insert(str(random.getrandbits(64)))#test with random 64 bit ints
+    36     63.3 MiB     63.3 MiB           1   @profile(stream=fp)
+    37                                         def cuckoo_insert_random_numbers(cuckoo,n): # insert until cuckoo is full
+    38                                             #insert a set of kmers into the cuckoo
+    39                                             
+    40     63.3 MiB      0.0 MiB       14001       for i in range(0,n):
+    41                                                 # cuckoo.insert(str(random.getrandbits(64)))#test with random 64 bit ints
+    42     63.3 MiB      0.0 MiB       14000           cuckoo.insert(fa[i])
 
 
 Filename: memory_benchmark.py
 
 Line #    Mem usage    Increment  Occurrences   Line Contents
 =============================================================
-    12    109.5 MiB    109.5 MiB           1   @profile(stream=fp)
-    13                                         def make_cuckoo(n):#instantiate structure
-    14    156.0 MiB     46.5 MiB           1       return Cuckoo(n, 3)
+    31     63.3 MiB     63.3 MiB           1   @profile(stream=fp)
+    32                                         def make_cuckoo(n):#instantiate structure
+    33     68.3 MiB      5.1 MiB           1       return Counting_Cuckoo(n, 3)
 
 
 Filename: memory_benchmark.py
 
 Line #    Mem usage    Increment  Occurrences   Line Contents
 =============================================================
-    17    108.8 MiB    108.8 MiB           1   @profile(stream=fp)
-    18                                         def cuckoo_insert_random_numbers(cuckoo,n): # insert until cuckoo is full
-    19                                             #insert a set of kmers into the cuckoo
-    20                                             
-    21    108.8 MiB      0.0 MiB      150001       for i in range(0,n):
-    22    108.8 MiB      0.0 MiB      150000           cuckoo.insert(str(random.getrandbits(64)))#test with random 64 bit ints
+    36     63.0 MiB     63.0 MiB           1   @profile(stream=fp)
+    37                                         def cuckoo_insert_random_numbers(cuckoo,n): # insert until cuckoo is full
+    38                                             #insert a set of kmers into the cuckoo
+    39                                             
+    40     63.0 MiB      0.0 MiB       15001       for i in range(0,n):
+    41                                                 # cuckoo.insert(str(random.getrandbits(64)))#test with random 64 bit ints
+    42     63.0 MiB      0.0 MiB       15000           cuckoo.insert(fa[i])
 
 
 Filename: memory_benchmark.py
 
 Line #    Mem usage    Increment  Occurrences   Line Contents
 =============================================================
-    12    108.8 MiB    108.8 MiB           1   @profile(stream=fp)
-    13                                         def make_cuckoo(n):#instantiate structure
-    14    156.0 MiB     47.2 MiB           1       return Cuckoo(n, 3)
+    31     63.0 MiB     63.0 MiB           1   @profile(stream=fp)
+    32                                         def make_cuckoo(n):#instantiate structure
+    33     67.9 MiB      4.9 MiB           1       return Counting_Cuckoo(n, 3)
 
 
 Filename: memory_benchmark.py
 
 Line #    Mem usage    Increment  Occurrences   Line Contents
 =============================================================
-    17    109.8 MiB    109.8 MiB           1   @profile(stream=fp)
-    18                                         def cuckoo_insert_random_numbers(cuckoo,n): # insert until cuckoo is full
-    19                                             #insert a set of kmers into the cuckoo
-    20                                             
-    21    109.8 MiB      0.0 MiB      160001       for i in range(0,n):
-    22    109.8 MiB      0.0 MiB      160000           cuckoo.insert(str(random.getrandbits(64)))#test with random 64 bit ints
+    36     63.1 MiB     63.1 MiB           1   @profile(stream=fp)
+    37                                         def cuckoo_insert_random_numbers(cuckoo,n): # insert until cuckoo is full
+    38                                             #insert a set of kmers into the cuckoo
+    39                                             
+    40     63.1 MiB      0.0 MiB       16001       for i in range(0,n):
+    41                                                 # cuckoo.insert(str(random.getrandbits(64)))#test with random 64 bit ints
+    42     63.1 MiB      0.0 MiB       16000           cuckoo.insert(fa[i])
 
 
 Filename: memory_benchmark.py
 
 Line #    Mem usage    Increment  Occurrences   Line Contents
 =============================================================
-    12    109.8 MiB    109.8 MiB           1   @profile(stream=fp)
-    13                                         def make_cuckoo(n):#instantiate structure
-    14    156.0 MiB     46.2 MiB           1       return Cuckoo(n, 3)
+    31     63.1 MiB     63.1 MiB           1   @profile(stream=fp)
+    32                                         def make_cuckoo(n):#instantiate structure
+    33     68.0 MiB      4.8 MiB           1       return Counting_Cuckoo(n, 3)
 
 
 Filename: memory_benchmark.py
 
 Line #    Mem usage    Increment  Occurrences   Line Contents
 =============================================================
-    17    109.0 MiB    109.0 MiB           1   @profile(stream=fp)
-    18                                         def cuckoo_insert_random_numbers(cuckoo,n): # insert until cuckoo is full
-    19                                             #insert a set of kmers into the cuckoo
-    20                                             
-    21    109.0 MiB      0.0 MiB      170001       for i in range(0,n):
-    22    109.0 MiB      0.0 MiB      170000           cuckoo.insert(str(random.getrandbits(64)))#test with random 64 bit ints
+    36     63.7 MiB     63.7 MiB           1   @profile(stream=fp)
+    37                                         def cuckoo_insert_random_numbers(cuckoo,n): # insert until cuckoo is full
+    38                                             #insert a set of kmers into the cuckoo
+    39                                             
+    40     63.7 MiB      0.0 MiB       17001       for i in range(0,n):
+    41                                                 # cuckoo.insert(str(random.getrandbits(64)))#test with random 64 bit ints
+    42     63.7 MiB      0.0 MiB       17000           cuckoo.insert(fa[i])
 
 
 Filename: memory_benchmark.py
 
 Line #    Mem usage    Increment  Occurrences   Line Contents
 =============================================================
-    12    109.0 MiB    109.0 MiB           1   @profile(stream=fp)
-    13                                         def make_cuckoo(n):#instantiate structure
-    14    156.0 MiB     47.0 MiB           1       return Cuckoo(n, 3)
+    31     63.7 MiB     63.7 MiB           1   @profile(stream=fp)
+    32                                         def make_cuckoo(n):#instantiate structure
+    33     68.0 MiB      4.3 MiB           1       return Counting_Cuckoo(n, 3)
 
 
 Filename: memory_benchmark.py
 
 Line #    Mem usage    Increment  Occurrences   Line Contents
 =============================================================
-    17    110.0 MiB    110.0 MiB           1   @profile(stream=fp)
-    18                                         def cuckoo_insert_random_numbers(cuckoo,n): # insert until cuckoo is full
-    19                                             #insert a set of kmers into the cuckoo
-    20                                             
-    21    110.0 MiB      0.0 MiB      180001       for i in range(0,n):
-    22    110.0 MiB      0.0 MiB      180000           cuckoo.insert(str(random.getrandbits(64)))#test with random 64 bit ints
+    36     63.5 MiB     63.5 MiB           1   @profile(stream=fp)
+    37                                         def cuckoo_insert_random_numbers(cuckoo,n): # insert until cuckoo is full
+    38                                             #insert a set of kmers into the cuckoo
+    39                                             
+    40     63.5 MiB      0.0 MiB       18001       for i in range(0,n):
+    41                                                 # cuckoo.insert(str(random.getrandbits(64)))#test with random 64 bit ints
+    42     63.5 MiB      0.0 MiB       18000           cuckoo.insert(fa[i])
 
 
 Filename: memory_benchmark.py
 
 Line #    Mem usage    Increment  Occurrences   Line Contents
 =============================================================
-    12    110.0 MiB    110.0 MiB           1   @profile(stream=fp)
-    13                                         def make_cuckoo(n):#instantiate structure
-    14    156.0 MiB     46.0 MiB           1       return Cuckoo(n, 3)
+    31     63.5 MiB     63.5 MiB           1   @profile(stream=fp)
+    32                                         def make_cuckoo(n):#instantiate structure
+    33     68.1 MiB      4.6 MiB           1       return Counting_Cuckoo(n, 3)
 
 
 Filename: memory_benchmark.py
 
 Line #    Mem usage    Increment  Occurrences   Line Contents
 =============================================================
-    17    109.3 MiB    109.3 MiB           1   @profile(stream=fp)
-    18                                         def cuckoo_insert_random_numbers(cuckoo,n): # insert until cuckoo is full
-    19                                             #insert a set of kmers into the cuckoo
-    20                                             
-    21    109.3 MiB      0.0 MiB      190001       for i in range(0,n):
-    22    109.3 MiB      0.0 MiB      190000           cuckoo.insert(str(random.getrandbits(64)))#test with random 64 bit ints
+    36     64.1 MiB     64.1 MiB           1   @profile(stream=fp)
+    37                                         def cuckoo_insert_random_numbers(cuckoo,n): # insert until cuckoo is full
+    38                                             #insert a set of kmers into the cuckoo
+    39                                             
+    40     64.1 MiB      0.1 MiB       19001       for i in range(0,n):
+    41                                                 # cuckoo.insert(str(random.getrandbits(64)))#test with random 64 bit ints
+    42     64.1 MiB      0.0 MiB       19000           cuckoo.insert(fa[i])
 
 
 Filename: memory_benchmark.py
 
 Line #    Mem usage    Increment  Occurrences   Line Contents
 =============================================================
-    12    109.3 MiB    109.3 MiB           1   @profile(stream=fp)
-    13                                         def make_cuckoo(n):#instantiate structure
-    14    212.9 MiB    103.6 MiB           1       return Cuckoo(n, 3)
+    31     64.1 MiB     64.1 MiB           1   @profile(stream=fp)
+    32                                         def make_cuckoo(n):#instantiate structure
+    33     68.1 MiB      4.0 MiB           1       return Counting_Cuckoo(n, 3)
 
 
 Filename: memory_benchmark.py
 
 Line #    Mem usage    Increment  Occurrences   Line Contents
 =============================================================
-    17    159.2 MiB    159.2 MiB           1   @profile(stream=fp)
-    18                                         def cuckoo_insert_random_numbers(cuckoo,n): # insert until cuckoo is full
-    19                                             #insert a set of kmers into the cuckoo
-    20                                             
-    21    159.2 MiB      0.0 MiB      200001       for i in range(0,n):
-    22    159.2 MiB      0.0 MiB      200000           cuckoo.insert(str(random.getrandbits(64)))#test with random 64 bit ints
+    36     63.9 MiB     63.9 MiB           1   @profile(stream=fp)
+    37                                         def cuckoo_insert_random_numbers(cuckoo,n): # insert until cuckoo is full
+    38                                             #insert a set of kmers into the cuckoo
+    39                                             
+    40     63.9 MiB      0.0 MiB       20001       for i in range(0,n):
+    41                                                 # cuckoo.insert(str(random.getrandbits(64)))#test with random 64 bit ints
+    42     63.9 MiB      0.0 MiB       20000           cuckoo.insert(fa[i])
 
 
 Filename: memory_benchmark.py
 
 Line #    Mem usage    Increment  Occurrences   Line Contents
 =============================================================
-    12    159.2 MiB    159.2 MiB           1   @profile(stream=fp)
-    13                                         def make_cuckoo(n):#instantiate structure
-    14    266.7 MiB    107.6 MiB           1       return Cuckoo(n, 3)
+    31     63.9 MiB     63.9 MiB           1   @profile(stream=fp)
+    32                                         def make_cuckoo(n):#instantiate structure
+    33     68.2 MiB      4.3 MiB           1       return Counting_Cuckoo(n, 3)
 
 
 Filename: memory_benchmark.py
 
 Line #    Mem usage    Increment  Occurrences   Line Contents
 =============================================================
-    17    163.5 MiB    163.5 MiB           1   @profile(stream=fp)
-    18                                         def cuckoo_insert_random_numbers(cuckoo,n): # insert until cuckoo is full
-    19                                             #insert a set of kmers into the cuckoo
-    20                                             
-    21    163.5 MiB      0.0 MiB      210001       for i in range(0,n):
-    22    163.5 MiB      0.0 MiB      210000           cuckoo.insert(str(random.getrandbits(64)))#test with random 64 bit ints
+    36     64.5 MiB     64.5 MiB           1   @profile(stream=fp)
+    37                                         def cuckoo_insert_random_numbers(cuckoo,n): # insert until cuckoo is full
+    38                                             #insert a set of kmers into the cuckoo
+    39                                             
+    40     64.5 MiB      0.0 MiB       21001       for i in range(0,n):
+    41                                                 # cuckoo.insert(str(random.getrandbits(64)))#test with random 64 bit ints
+    42     64.5 MiB      0.0 MiB       21000           cuckoo.insert(fa[i])
 
 
 Filename: memory_benchmark.py
 
 Line #    Mem usage    Increment  Occurrences   Line Contents
 =============================================================
-    12    163.5 MiB    163.5 MiB           1   @profile(stream=fp)
-    13                                         def make_cuckoo(n):#instantiate structure
-    14    261.6 MiB     98.1 MiB           1       return Cuckoo(n, 3)
+    31     64.5 MiB     64.5 MiB           1   @profile(stream=fp)
+    32                                         def make_cuckoo(n):#instantiate structure
+    33     68.3 MiB      3.8 MiB           1       return Counting_Cuckoo(n, 3)
 
 
 Filename: memory_benchmark.py
 
 Line #    Mem usage    Increment  Occurrences   Line Contents
 =============================================================
-    17    159.3 MiB    159.3 MiB           1   @profile(stream=fp)
-    18                                         def cuckoo_insert_random_numbers(cuckoo,n): # insert until cuckoo is full
-    19                                             #insert a set of kmers into the cuckoo
-    20                                             
-    21    159.3 MiB      0.0 MiB      220001       for i in range(0,n):
-    22    159.3 MiB      0.0 MiB      220000           cuckoo.insert(str(random.getrandbits(64)))#test with random 64 bit ints
+    36     64.0 MiB     64.0 MiB           1   @profile(stream=fp)
+    37                                         def cuckoo_insert_random_numbers(cuckoo,n): # insert until cuckoo is full
+    38                                             #insert a set of kmers into the cuckoo
+    39                                             
+    40     64.0 MiB      0.0 MiB       22001       for i in range(0,n):
+    41                                                 # cuckoo.insert(str(random.getrandbits(64)))#test with random 64 bit ints
+    42     64.0 MiB      0.0 MiB       22000           cuckoo.insert(fa[i])
 
 
 Filename: memory_benchmark.py
 
 Line #    Mem usage    Increment  Occurrences   Line Contents
 =============================================================
-    12    159.3 MiB    159.3 MiB           1   @profile(stream=fp)
-    13                                         def make_cuckoo(n):#instantiate structure
-    14    261.6 MiB    102.2 MiB           1       return Cuckoo(n, 3)
+    31     64.0 MiB     64.0 MiB           1   @profile(stream=fp)
+    32                                         def make_cuckoo(n):#instantiate structure
+    33     68.3 MiB      4.3 MiB           1       return Counting_Cuckoo(n, 3)
 
 
 Filename: memory_benchmark.py
 
 Line #    Mem usage    Increment  Occurrences   Line Contents
 =============================================================
-    17    166.6 MiB    166.6 MiB           1   @profile(stream=fp)
-    18                                         def cuckoo_insert_random_numbers(cuckoo,n): # insert until cuckoo is full
-    19                                             #insert a set of kmers into the cuckoo
-    20                                             
-    21    166.6 MiB      0.0 MiB      230001       for i in range(0,n):
-    22    166.6 MiB      0.0 MiB      230000           cuckoo.insert(str(random.getrandbits(64)))#test with random 64 bit ints
+    36     64.8 MiB     64.8 MiB           1   @profile(stream=fp)
+    37                                         def cuckoo_insert_random_numbers(cuckoo,n): # insert until cuckoo is full
+    38                                             #insert a set of kmers into the cuckoo
+    39                                             
+    40     64.9 MiB      0.0 MiB       23001       for i in range(0,n):
+    41                                                 # cuckoo.insert(str(random.getrandbits(64)))#test with random 64 bit ints
+    42     64.9 MiB      0.0 MiB       23000           cuckoo.insert(fa[i])
 
 
 Filename: memory_benchmark.py
 
 Line #    Mem usage    Increment  Occurrences   Line Contents
 =============================================================
-    12    166.6 MiB    166.6 MiB           1   @profile(stream=fp)
-    13                                         def make_cuckoo(n):#instantiate structure
-    14    261.6 MiB     95.0 MiB           1       return Cuckoo(n, 3)
+    31     64.9 MiB     64.9 MiB           1   @profile(stream=fp)
+    32                                         def make_cuckoo(n):#instantiate structure
+    33     68.4 MiB      3.5 MiB           1       return Counting_Cuckoo(n, 3)
 
 
 Filename: memory_benchmark.py
 
 Line #    Mem usage    Increment  Occurrences   Line Contents
 =============================================================
-    17    167.6 MiB    167.6 MiB           1   @profile(stream=fp)
-    18                                         def cuckoo_insert_random_numbers(cuckoo,n): # insert until cuckoo is full
-    19                                             #insert a set of kmers into the cuckoo
-    20                                             
-    21    167.6 MiB      0.0 MiB      240001       for i in range(0,n):
-    22    167.6 MiB      0.0 MiB      240000           cuckoo.insert(str(random.getrandbits(64)))#test with random 64 bit ints
+    36     64.4 MiB     64.4 MiB           1   @profile(stream=fp)
+    37                                         def cuckoo_insert_random_numbers(cuckoo,n): # insert until cuckoo is full
+    38                                             #insert a set of kmers into the cuckoo
+    39                                             
+    40     64.4 MiB      0.0 MiB       24001       for i in range(0,n):
+    41                                                 # cuckoo.insert(str(random.getrandbits(64)))#test with random 64 bit ints
+    42     64.4 MiB      0.0 MiB       24000           cuckoo.insert(fa[i])
 
 
 Filename: memory_benchmark.py
 
 Line #    Mem usage    Increment  Occurrences   Line Contents
 =============================================================
-    12    167.6 MiB    167.6 MiB           1   @profile(stream=fp)
-    13                                         def make_cuckoo(n):#instantiate structure
-    14    261.6 MiB     94.0 MiB           1       return Cuckoo(n, 3)
+    31     64.4 MiB     64.4 MiB           1   @profile(stream=fp)
+    32                                         def make_cuckoo(n):#instantiate structure
+    33     75.6 MiB     11.2 MiB           1       return Counting_Cuckoo(n, 3)
 
 
 Filename: memory_benchmark.py
 
 Line #    Mem usage    Increment  Occurrences   Line Contents
 =============================================================
-    17    166.8 MiB    166.8 MiB           1   @profile(stream=fp)
-    18                                         def cuckoo_insert_random_numbers(cuckoo,n): # insert until cuckoo is full
-    19                                             #insert a set of kmers into the cuckoo
-    20                                             
-    21    166.8 MiB      0.0 MiB      250001       for i in range(0,n):
-    22    166.8 MiB      0.0 MiB      250000           cuckoo.insert(str(random.getrandbits(64)))#test with random 64 bit ints
+    36     71.4 MiB     71.4 MiB           1   @profile(stream=fp)
+    37                                         def cuckoo_insert_random_numbers(cuckoo,n): # insert until cuckoo is full
+    38                                             #insert a set of kmers into the cuckoo
+    39                                             
+    40     71.4 MiB      0.0 MiB       25001       for i in range(0,n):
+    41                                                 # cuckoo.insert(str(random.getrandbits(64)))#test with random 64 bit ints
+    42     71.4 MiB      0.0 MiB       25000           cuckoo.insert(fa[i])
 
 
 Filename: memory_benchmark.py
 
 Line #    Mem usage    Increment  Occurrences   Line Contents
 =============================================================
-    12    166.8 MiB    166.8 MiB           1   @profile(stream=fp)
-    13                                         def make_cuckoo(n):#instantiate structure
-    14    261.6 MiB     94.8 MiB           1       return Cuckoo(n, 3)
+    31     71.4 MiB     71.4 MiB           1   @profile(stream=fp)
+    32                                         def make_cuckoo(n):#instantiate structure
+    33     82.4 MiB     11.0 MiB           1       return Counting_Cuckoo(n, 3)
 
 
 Filename: memory_benchmark.py
 
 Line #    Mem usage    Increment  Occurrences   Line Contents
 =============================================================
-    17    167.8 MiB    167.8 MiB           1   @profile(stream=fp)
-    18                                         def cuckoo_insert_random_numbers(cuckoo,n): # insert until cuckoo is full
-    19                                             #insert a set of kmers into the cuckoo
-    20                                             
-    21    167.8 MiB      0.0 MiB      260001       for i in range(0,n):
-    22    167.8 MiB      0.0 MiB      260000           cuckoo.insert(str(random.getrandbits(64)))#test with random 64 bit ints
+    36     71.4 MiB     71.4 MiB           1   @profile(stream=fp)
+    37                                         def cuckoo_insert_random_numbers(cuckoo,n): # insert until cuckoo is full
+    38                                             #insert a set of kmers into the cuckoo
+    39                                             
+    40     71.4 MiB      0.0 MiB       26001       for i in range(0,n):
+    41                                                 # cuckoo.insert(str(random.getrandbits(64)))#test with random 64 bit ints
+    42     71.4 MiB      0.0 MiB       26000           cuckoo.insert(fa[i])
 
 
 Filename: memory_benchmark.py
 
 Line #    Mem usage    Increment  Occurrences   Line Contents
 =============================================================
-    12    167.8 MiB    167.8 MiB           1   @profile(stream=fp)
-    13                                         def make_cuckoo(n):#instantiate structure
-    14    261.6 MiB     93.7 MiB           1       return Cuckoo(n, 3)
+    31     71.4 MiB     71.4 MiB           1   @profile(stream=fp)
+    32                                         def make_cuckoo(n):#instantiate structure
+    33     81.7 MiB     10.3 MiB           1       return Counting_Cuckoo(n, 3)
 
 
 Filename: memory_benchmark.py
 
 Line #    Mem usage    Increment  Occurrences   Line Contents
 =============================================================
-    17    167.1 MiB    167.1 MiB           1   @profile(stream=fp)
-    18                                         def cuckoo_insert_random_numbers(cuckoo,n): # insert until cuckoo is full
-    19                                             #insert a set of kmers into the cuckoo
-    20                                             
-    21    167.1 MiB      0.0 MiB      270001       for i in range(0,n):
-    22    167.1 MiB      0.0 MiB      270000           cuckoo.insert(str(random.getrandbits(64)))#test with random 64 bit ints
+    36     71.5 MiB     71.5 MiB           1   @profile(stream=fp)
+    37                                         def cuckoo_insert_random_numbers(cuckoo,n): # insert until cuckoo is full
+    38                                             #insert a set of kmers into the cuckoo
+    39                                             
+    40     71.5 MiB      0.0 MiB       27001       for i in range(0,n):
+    41                                                 # cuckoo.insert(str(random.getrandbits(64)))#test with random 64 bit ints
+    42     71.5 MiB      0.0 MiB       27000           cuckoo.insert(fa[i])
 
 
 Filename: memory_benchmark.py
 
 Line #    Mem usage    Increment  Occurrences   Line Contents
 =============================================================
-    12    167.1 MiB    167.1 MiB           1   @profile(stream=fp)
-    13                                         def make_cuckoo(n):#instantiate structure
-    14    261.6 MiB     94.5 MiB           1       return Cuckoo(n, 3)
+    31     71.5 MiB     71.5 MiB           1   @profile(stream=fp)
+    32                                         def make_cuckoo(n):#instantiate structure
+    33     81.8 MiB     10.3 MiB           1       return Counting_Cuckoo(n, 3)
 
 
 Filename: memory_benchmark.py
 
 Line #    Mem usage    Increment  Occurrences   Line Contents
 =============================================================
-    17    168.1 MiB    168.1 MiB           1   @profile(stream=fp)
-    18                                         def cuckoo_insert_random_numbers(cuckoo,n): # insert until cuckoo is full
-    19                                             #insert a set of kmers into the cuckoo
-    20                                             
-    21    168.1 MiB      0.0 MiB      280001       for i in range(0,n):
-    22    168.1 MiB      0.0 MiB      280000           cuckoo.insert(str(random.getrandbits(64)))#test with random 64 bit ints
+    36     72.0 MiB     72.0 MiB           1   @profile(stream=fp)
+    37                                         def cuckoo_insert_random_numbers(cuckoo,n): # insert until cuckoo is full
+    38                                             #insert a set of kmers into the cuckoo
+    39                                             
+    40     72.1 MiB      0.0 MiB       28001       for i in range(0,n):
+    41                                                 # cuckoo.insert(str(random.getrandbits(64)))#test with random 64 bit ints
+    42     72.1 MiB      0.0 MiB       28000           cuckoo.insert(fa[i])
 
 
 Filename: memory_benchmark.py
 
 Line #    Mem usage    Increment  Occurrences   Line Contents
 =============================================================
-    12    168.1 MiB    168.1 MiB           1   @profile(stream=fp)
-    13                                         def make_cuckoo(n):#instantiate structure
-    14    261.6 MiB     93.5 MiB           1       return Cuckoo(n, 3)
+    31     72.1 MiB     72.1 MiB           1   @profile(stream=fp)
+    32                                         def make_cuckoo(n):#instantiate structure
+    33     81.9 MiB      9.8 MiB           1       return Counting_Cuckoo(n, 3)
 
 
 Filename: memory_benchmark.py
 
 Line #    Mem usage    Increment  Occurrences   Line Contents
 =============================================================
-    17    167.3 MiB    167.3 MiB           1   @profile(stream=fp)
-    18                                         def cuckoo_insert_random_numbers(cuckoo,n): # insert until cuckoo is full
-    19                                             #insert a set of kmers into the cuckoo
-    20                                             
-    21    167.3 MiB      0.0 MiB      290001       for i in range(0,n):
-    22    167.3 MiB      0.0 MiB      290000           cuckoo.insert(str(random.getrandbits(64)))#test with random 64 bit ints
+    36     72.9 MiB     72.9 MiB           1   @profile(stream=fp)
+    37                                         def cuckoo_insert_random_numbers(cuckoo,n): # insert until cuckoo is full
+    38                                             #insert a set of kmers into the cuckoo
+    39                                             
+    40     72.9 MiB      0.0 MiB       29001       for i in range(0,n):
+    41                                                 # cuckoo.insert(str(random.getrandbits(64)))#test with random 64 bit ints
+    42     72.9 MiB      0.0 MiB       29000           cuckoo.insert(fa[i])
 
 
 Filename: memory_benchmark.py
 
 Line #    Mem usage    Increment  Occurrences   Line Contents
 =============================================================
-    12    167.3 MiB    167.3 MiB           1   @profile(stream=fp)
-    13                                         def make_cuckoo(n):#instantiate structure
-    14    261.6 MiB     94.2 MiB           1       return Cuckoo(n, 3)
+    31     72.9 MiB     72.9 MiB           1   @profile(stream=fp)
+    32                                         def make_cuckoo(n):#instantiate structure
+    33     81.9 MiB      9.1 MiB           1       return Counting_Cuckoo(n, 3)
 
 
 Filename: memory_benchmark.py
 
 Line #    Mem usage    Increment  Occurrences   Line Contents
 =============================================================
-    17    168.3 MiB    168.3 MiB           1   @profile(stream=fp)
-    18                                         def cuckoo_insert_random_numbers(cuckoo,n): # insert until cuckoo is full
-    19                                             #insert a set of kmers into the cuckoo
-    20                                             
-    21    168.3 MiB      0.0 MiB      300001       for i in range(0,n):
-    22    168.3 MiB      0.0 MiB      300000           cuckoo.insert(str(random.getrandbits(64)))#test with random 64 bit ints
+    36     72.4 MiB     72.4 MiB           1   @profile(stream=fp)
+    37                                         def cuckoo_insert_random_numbers(cuckoo,n): # insert until cuckoo is full
+    38                                             #insert a set of kmers into the cuckoo
+    39                                             
+    40     72.4 MiB      0.0 MiB       30001       for i in range(0,n):
+    41                                                 # cuckoo.insert(str(random.getrandbits(64)))#test with random 64 bit ints
+    42     72.4 MiB      0.0 MiB       30000           cuckoo.insert(fa[i])
 
 
 Filename: memory_benchmark.py
 
 Line #    Mem usage    Increment  Occurrences   Line Contents
 =============================================================
-    12    168.3 MiB    168.3 MiB           1   @profile(stream=fp)
-    13                                         def make_cuckoo(n):#instantiate structure
-    14    261.6 MiB     93.2 MiB           1       return Cuckoo(n, 3)
+    31     72.4 MiB     72.4 MiB           1   @profile(stream=fp)
+    32                                         def make_cuckoo(n):#instantiate structure
+    33     82.0 MiB      9.6 MiB           1       return Counting_Cuckoo(n, 3)
 
 
 Filename: memory_benchmark.py
 
 Line #    Mem usage    Increment  Occurrences   Line Contents
 =============================================================
-    17    167.6 MiB    167.6 MiB           1   @profile(stream=fp)
-    18                                         def cuckoo_insert_random_numbers(cuckoo,n): # insert until cuckoo is full
-    19                                             #insert a set of kmers into the cuckoo
-    20                                             
-    21    167.6 MiB      0.0 MiB      310001       for i in range(0,n):
-    22    167.6 MiB      0.0 MiB      310000           cuckoo.insert(str(random.getrandbits(64)))#test with random 64 bit ints
+    36     73.0 MiB     73.0 MiB           1   @profile(stream=fp)
+    37                                         def cuckoo_insert_random_numbers(cuckoo,n): # insert until cuckoo is full
+    38                                             #insert a set of kmers into the cuckoo
+    39                                             
+    40     73.0 MiB      0.0 MiB       31001       for i in range(0,n):
+    41                                                 # cuckoo.insert(str(random.getrandbits(64)))#test with random 64 bit ints
+    42     73.0 MiB      0.0 MiB       31000           cuckoo.insert(fa[i])
 
 
 Filename: memory_benchmark.py
 
 Line #    Mem usage    Increment  Occurrences   Line Contents
 =============================================================
-    12    167.6 MiB    167.6 MiB           1   @profile(stream=fp)
-    13                                         def make_cuckoo(n):#instantiate structure
-    14    261.6 MiB     94.0 MiB           1       return Cuckoo(n, 3)
+    31     73.0 MiB     73.0 MiB           1   @profile(stream=fp)
+    32                                         def make_cuckoo(n):#instantiate structure
+    33     82.0 MiB      9.1 MiB           1       return Counting_Cuckoo(n, 3)
 
 
 Filename: memory_benchmark.py
 
 Line #    Mem usage    Increment  Occurrences   Line Contents
 =============================================================
-    17    168.6 MiB    168.6 MiB           1   @profile(stream=fp)
-    18                                         def cuckoo_insert_random_numbers(cuckoo,n): # insert until cuckoo is full
-    19                                             #insert a set of kmers into the cuckoo
-    20                                             
-    21    168.6 MiB      0.0 MiB      320001       for i in range(0,n):
-    22    168.6 MiB      0.0 MiB      320000           cuckoo.insert(str(random.getrandbits(64)))#test with random 64 bit ints
+    36     72.8 MiB     72.8 MiB           1   @profile(stream=fp)
+    37                                         def cuckoo_insert_random_numbers(cuckoo,n): # insert until cuckoo is full
+    38                                             #insert a set of kmers into the cuckoo
+    39                                             
+    40     72.9 MiB      0.1 MiB       32001       for i in range(0,n):
+    41                                                 # cuckoo.insert(str(random.getrandbits(64)))#test with random 64 bit ints
+    42     72.9 MiB      0.0 MiB       32000           cuckoo.insert(fa[i])
 
 
 Filename: memory_benchmark.py
 
 Line #    Mem usage    Increment  Occurrences   Line Contents
 =============================================================
-    12    168.6 MiB    168.6 MiB           1   @profile(stream=fp)
-    13                                         def make_cuckoo(n):#instantiate structure
-    14    261.6 MiB     93.0 MiB           1       return Cuckoo(n, 3)
+    31     72.9 MiB     72.9 MiB           1   @profile(stream=fp)
+    32                                         def make_cuckoo(n):#instantiate structure
+    33     82.1 MiB      9.2 MiB           1       return Counting_Cuckoo(n, 3)
 
 
 Filename: memory_benchmark.py
 
 Line #    Mem usage    Increment  Occurrences   Line Contents
 =============================================================
-    17    167.8 MiB    167.8 MiB           1   @profile(stream=fp)
-    18                                         def cuckoo_insert_random_numbers(cuckoo,n): # insert until cuckoo is full
-    19                                             #insert a set of kmers into the cuckoo
-    20                                             
-    21    167.8 MiB      0.0 MiB      330001       for i in range(0,n):
-    22    167.8 MiB      0.0 MiB      330000           cuckoo.insert(str(random.getrandbits(64)))#test with random 64 bit ints
+    36     73.3 MiB     73.3 MiB           1   @profile(stream=fp)
+    37                                         def cuckoo_insert_random_numbers(cuckoo,n): # insert until cuckoo is full
+    38                                             #insert a set of kmers into the cuckoo
+    39                                             
+    40     73.4 MiB      0.0 MiB       33001       for i in range(0,n):
+    41                                                 # cuckoo.insert(str(random.getrandbits(64)))#test with random 64 bit ints
+    42     73.4 MiB      0.0 MiB       33000           cuckoo.insert(fa[i])
 
 
 Filename: memory_benchmark.py
 
 Line #    Mem usage    Increment  Occurrences   Line Contents
 =============================================================
-    12    167.8 MiB    167.8 MiB           1   @profile(stream=fp)
-    13                                         def make_cuckoo(n):#instantiate structure
-    14    261.6 MiB     93.8 MiB           1       return Cuckoo(n, 3)
+    31     73.4 MiB     73.4 MiB           1   @profile(stream=fp)
+    32                                         def make_cuckoo(n):#instantiate structure
+    33     82.2 MiB      8.8 MiB           1       return Counting_Cuckoo(n, 3)
 
 
 Filename: memory_benchmark.py
 
 Line #    Mem usage    Increment  Occurrences   Line Contents
 =============================================================
-    17    168.8 MiB    168.8 MiB           1   @profile(stream=fp)
-    18                                         def cuckoo_insert_random_numbers(cuckoo,n): # insert until cuckoo is full
-    19                                             #insert a set of kmers into the cuckoo
-    20                                             
-    21    168.8 MiB      0.0 MiB      340001       for i in range(0,n):
-    22    168.8 MiB      0.0 MiB      340000           cuckoo.insert(str(random.getrandbits(64)))#test with random 64 bit ints
+    36     73.2 MiB     73.2 MiB           1   @profile(stream=fp)
+    37                                         def cuckoo_insert_random_numbers(cuckoo,n): # insert until cuckoo is full
+    38                                             #insert a set of kmers into the cuckoo
+    39                                             
+    40     73.2 MiB      0.0 MiB       34001       for i in range(0,n):
+    41                                                 # cuckoo.insert(str(random.getrandbits(64)))#test with random 64 bit ints
+    42     73.2 MiB      0.0 MiB       34000           cuckoo.insert(fa[i])
 
 
 Filename: memory_benchmark.py
 
 Line #    Mem usage    Increment  Occurrences   Line Contents
 =============================================================
-    12    168.8 MiB    168.8 MiB           1   @profile(stream=fp)
-    13                                         def make_cuckoo(n):#instantiate structure
-    14    261.6 MiB     92.7 MiB           1       return Cuckoo(n, 3)
+    31     73.2 MiB     73.2 MiB           1   @profile(stream=fp)
+    32                                         def make_cuckoo(n):#instantiate structure
+    33     82.2 MiB      9.1 MiB           1       return Counting_Cuckoo(n, 3)
 
 
 Filename: memory_benchmark.py
 
 Line #    Mem usage    Increment  Occurrences   Line Contents
 =============================================================
-    17    168.1 MiB    168.1 MiB           1   @profile(stream=fp)
-    18                                         def cuckoo_insert_random_numbers(cuckoo,n): # insert until cuckoo is full
-    19                                             #insert a set of kmers into the cuckoo
-    20                                             
-    21    168.1 MiB      0.0 MiB      350001       for i in range(0,n):
-    22    168.1 MiB      0.0 MiB      350000           cuckoo.insert(str(random.getrandbits(64)))#test with random 64 bit ints
+    36     73.5 MiB     73.5 MiB           1   @profile(stream=fp)
+    37                                         def cuckoo_insert_random_numbers(cuckoo,n): # insert until cuckoo is full
+    38                                             #insert a set of kmers into the cuckoo
+    39                                             
+    40     73.5 MiB      0.0 MiB       35001       for i in range(0,n):
+    41                                                 # cuckoo.insert(str(random.getrandbits(64)))#test with random 64 bit ints
+    42     73.5 MiB      0.0 MiB       35000           cuckoo.insert(fa[i])
 
 
 Filename: memory_benchmark.py
 
 Line #    Mem usage    Increment  Occurrences   Line Contents
 =============================================================
-    12    168.1 MiB    168.1 MiB           1   @profile(stream=fp)
-    13                                         def make_cuckoo(n):#instantiate structure
-    14    261.6 MiB     93.5 MiB           1       return Cuckoo(n, 3)
+    31     73.5 MiB     73.5 MiB           1   @profile(stream=fp)
+    32                                         def make_cuckoo(n):#instantiate structure
+    33     82.3 MiB      8.8 MiB           1       return Counting_Cuckoo(n, 3)
 
 
 Filename: memory_benchmark.py
 
 Line #    Mem usage    Increment  Occurrences   Line Contents
 =============================================================
-    17    169.1 MiB    169.1 MiB           1   @profile(stream=fp)
-    18                                         def cuckoo_insert_random_numbers(cuckoo,n): # insert until cuckoo is full
-    19                                             #insert a set of kmers into the cuckoo
-    20                                             
-    21    169.1 MiB      0.0 MiB      360001       for i in range(0,n):
-    22    169.1 MiB      0.0 MiB      360000           cuckoo.insert(str(random.getrandbits(64)))#test with random 64 bit ints
+    36     73.5 MiB     73.5 MiB           1   @profile(stream=fp)
+    37                                         def cuckoo_insert_random_numbers(cuckoo,n): # insert until cuckoo is full
+    38                                             #insert a set of kmers into the cuckoo
+    39                                             
+    40     73.6 MiB      0.1 MiB       36001       for i in range(0,n):
+    41                                                 # cuckoo.insert(str(random.getrandbits(64)))#test with random 64 bit ints
+    42     73.6 MiB      0.0 MiB       36000           cuckoo.insert(fa[i])
 
 
 Filename: memory_benchmark.py
 
 Line #    Mem usage    Increment  Occurrences   Line Contents
 =============================================================
-    12    169.1 MiB    169.1 MiB           1   @profile(stream=fp)
-    13                                         def make_cuckoo(n):#instantiate structure
-    14    261.6 MiB     92.5 MiB           1       return Cuckoo(n, 3)
+    31     73.6 MiB     73.6 MiB           1   @profile(stream=fp)
+    32                                         def make_cuckoo(n):#instantiate structure
+    33     82.3 MiB      8.7 MiB           1       return Counting_Cuckoo(n, 3)
 
 
 Filename: memory_benchmark.py
 
 Line #    Mem usage    Increment  Occurrences   Line Contents
 =============================================================
-    17    168.3 MiB    168.3 MiB           1   @profile(stream=fp)
-    18                                         def cuckoo_insert_random_numbers(cuckoo,n): # insert until cuckoo is full
-    19                                             #insert a set of kmers into the cuckoo
-    20                                             
-    21    168.3 MiB      0.0 MiB      370001       for i in range(0,n):
-    22    168.3 MiB      0.0 MiB      370000           cuckoo.insert(str(random.getrandbits(64)))#test with random 64 bit ints
+    36     73.8 MiB     73.8 MiB           1   @profile(stream=fp)
+    37                                         def cuckoo_insert_random_numbers(cuckoo,n): # insert until cuckoo is full
+    38                                             #insert a set of kmers into the cuckoo
+    39                                             
+    40     73.9 MiB      0.0 MiB       37001       for i in range(0,n):
+    41                                                 # cuckoo.insert(str(random.getrandbits(64)))#test with random 64 bit ints
+    42     73.9 MiB      0.0 MiB       37000           cuckoo.insert(fa[i])
 
 
 Filename: memory_benchmark.py
 
 Line #    Mem usage    Increment  Occurrences   Line Contents
 =============================================================
-    12    168.3 MiB    168.3 MiB           1   @profile(stream=fp)
-    13                                         def make_cuckoo(n):#instantiate structure
-    14    261.6 MiB     93.2 MiB           1       return Cuckoo(n, 3)
+    31     73.9 MiB     73.9 MiB           1   @profile(stream=fp)
+    32                                         def make_cuckoo(n):#instantiate structure
+    33     82.4 MiB      8.6 MiB           1       return Counting_Cuckoo(n, 3)
 
 
 Filename: memory_benchmark.py
 
 Line #    Mem usage    Increment  Occurrences   Line Contents
 =============================================================
-    17    169.3 MiB    169.3 MiB           1   @profile(stream=fp)
-    18                                         def cuckoo_insert_random_numbers(cuckoo,n): # insert until cuckoo is full
-    19                                             #insert a set of kmers into the cuckoo
-    20                                             
-    21    169.3 MiB      0.0 MiB      380001       for i in range(0,n):
-    22    169.3 MiB      0.0 MiB      380000           cuckoo.insert(str(random.getrandbits(64)))#test with random 64 bit ints
+    36     73.9 MiB     73.9 MiB           1   @profile(stream=fp)
+    37                                         def cuckoo_insert_random_numbers(cuckoo,n): # insert until cuckoo is full
+    38                                             #insert a set of kmers into the cuckoo
+    39                                             
+    40     73.9 MiB      0.0 MiB       38001       for i in range(0,n):
+    41                                                 # cuckoo.insert(str(random.getrandbits(64)))#test with random 64 bit ints
+    42     73.9 MiB      0.0 MiB       38000           cuckoo.insert(fa[i])
 
 
 Filename: memory_benchmark.py
 
 Line #    Mem usage    Increment  Occurrences   Line Contents
 =============================================================
-    12    169.3 MiB    169.3 MiB           1   @profile(stream=fp)
-    13                                         def make_cuckoo(n):#instantiate structure
-    14    261.6 MiB     92.2 MiB           1       return Cuckoo(n, 3)
+    31     73.9 MiB     73.9 MiB           1   @profile(stream=fp)
+    32                                         def make_cuckoo(n):#instantiate structure
+    33     82.5 MiB      8.6 MiB           1       return Counting_Cuckoo(n, 3)
 
 
 Filename: memory_benchmark.py
 
 Line #    Mem usage    Increment  Occurrences   Line Contents
 =============================================================
-    17    168.6 MiB    168.6 MiB           1   @profile(stream=fp)
-    18                                         def cuckoo_insert_random_numbers(cuckoo,n): # insert until cuckoo is full
-    19                                             #insert a set of kmers into the cuckoo
-    20                                             
-    21    168.6 MiB      0.0 MiB      390001       for i in range(0,n):
-    22    168.6 MiB      0.0 MiB      390000           cuckoo.insert(str(random.getrandbits(64)))#test with random 64 bit ints
+    36     74.0 MiB     74.0 MiB           1   @profile(stream=fp)
+    37                                         def cuckoo_insert_random_numbers(cuckoo,n): # insert until cuckoo is full
+    38                                             #insert a set of kmers into the cuckoo
+    39                                             
+    40     74.0 MiB      0.0 MiB       39001       for i in range(0,n):
+    41                                                 # cuckoo.insert(str(random.getrandbits(64)))#test with random 64 bit ints
+    42     74.0 MiB      0.0 MiB       39000           cuckoo.insert(fa[i])
 
 
 Filename: memory_benchmark.py
 
 Line #    Mem usage    Increment  Occurrences   Line Contents
 =============================================================
-    12    168.6 MiB    168.6 MiB           1   @profile(stream=fp)
-    13                                         def make_cuckoo(n):#instantiate structure
-    14    375.4 MiB    206.8 MiB           1       return Cuckoo(n, 3)
+    31     74.0 MiB     74.0 MiB           1   @profile(stream=fp)
+    32                                         def make_cuckoo(n):#instantiate structure
+    33     82.5 MiB      8.6 MiB           1       return Counting_Cuckoo(n, 3)
 
 
 Filename: memory_benchmark.py
 
 Line #    Mem usage    Increment  Occurrences   Line Contents
 =============================================================
-    17    267.3 MiB    267.3 MiB           1   @profile(stream=fp)
-    18                                         def cuckoo_insert_random_numbers(cuckoo,n): # insert until cuckoo is full
-    19                                             #insert a set of kmers into the cuckoo
-    20                                             
-    21    267.3 MiB      0.0 MiB      400001       for i in range(0,n):
-    22    267.3 MiB      0.0 MiB      400000           cuckoo.insert(str(random.getrandbits(64)))#test with random 64 bit ints
+    36     74.3 MiB     74.3 MiB           1   @profile(stream=fp)
+    37                                         def cuckoo_insert_random_numbers(cuckoo,n): # insert until cuckoo is full
+    38                                             #insert a set of kmers into the cuckoo
+    39                                             
+    40     74.4 MiB      0.1 MiB       40001       for i in range(0,n):
+    41                                                 # cuckoo.insert(str(random.getrandbits(64)))#test with random 64 bit ints
+    42     74.4 MiB      0.0 MiB       40000           cuckoo.insert(fa[i])
 
 
 Filename: memory_benchmark.py
 
 Line #    Mem usage    Increment  Occurrences   Line Contents
 =============================================================
-    12    267.2 MiB    267.2 MiB           1   @profile(stream=fp)
-    13                                         def make_cuckoo(n):#instantiate structure
-    14    482.0 MiB    214.8 MiB           1       return Cuckoo(n, 3)
+    31     74.4 MiB     74.4 MiB           1   @profile(stream=fp)
+    32                                         def make_cuckoo(n):#instantiate structure
+    33     82.6 MiB      8.2 MiB           1       return Counting_Cuckoo(n, 3)
 
 
 Filename: memory_benchmark.py
 
 Line #    Mem usage    Increment  Occurrences   Line Contents
 =============================================================
-    17    275.7 MiB    275.7 MiB           1   @profile(stream=fp)
-    18                                         def cuckoo_insert_random_numbers(cuckoo,n): # insert until cuckoo is full
-    19                                             #insert a set of kmers into the cuckoo
-    20                                             
-    21    275.7 MiB      0.0 MiB      410001       for i in range(0,n):
-    22    275.7 MiB      0.0 MiB      410000           cuckoo.insert(str(random.getrandbits(64)))#test with random 64 bit ints
+    36     74.4 MiB     74.4 MiB           1   @profile(stream=fp)
+    37                                         def cuckoo_insert_random_numbers(cuckoo,n): # insert until cuckoo is full
+    38                                             #insert a set of kmers into the cuckoo
+    39                                             
+    40     74.4 MiB      0.0 MiB       41001       for i in range(0,n):
+    41                                                 # cuckoo.insert(str(random.getrandbits(64)))#test with random 64 bit ints
+    42     74.4 MiB      0.0 MiB       41000           cuckoo.insert(fa[i])
 
 
 Filename: memory_benchmark.py
 
 Line #    Mem usage    Increment  Occurrences   Line Contents
 =============================================================
-    12    275.7 MiB    275.7 MiB           1   @profile(stream=fp)
-    13                                         def make_cuckoo(n):#instantiate structure
-    14    472.7 MiB    196.9 MiB           1       return Cuckoo(n, 3)
+    31     74.4 MiB     74.4 MiB           1   @profile(stream=fp)
+    32                                         def make_cuckoo(n):#instantiate structure
+    33     82.7 MiB      8.3 MiB           1       return Counting_Cuckoo(n, 3)
 
 
 Filename: memory_benchmark.py
 
 Line #    Mem usage    Increment  Occurrences   Line Contents
 =============================================================
-    17    267.2 MiB    267.2 MiB           1   @profile(stream=fp)
-    18                                         def cuckoo_insert_random_numbers(cuckoo,n): # insert until cuckoo is full
-    19                                             #insert a set of kmers into the cuckoo
-    20                                             
-    21    267.2 MiB      0.0 MiB      420001       for i in range(0,n):
-    22    267.2 MiB      0.0 MiB      420000           cuckoo.insert(str(random.getrandbits(64)))#test with random 64 bit ints
+    36     74.7 MiB     74.7 MiB           1   @profile(stream=fp)
+    37                                         def cuckoo_insert_random_numbers(cuckoo,n): # insert until cuckoo is full
+    38                                             #insert a set of kmers into the cuckoo
+    39                                             
+    40     74.7 MiB      0.0 MiB       42001       for i in range(0,n):
+    41                                                 # cuckoo.insert(str(random.getrandbits(64)))#test with random 64 bit ints
+    42     74.7 MiB      0.0 MiB       42000           cuckoo.insert(fa[i])
 
 
 Filename: memory_benchmark.py
 
 Line #    Mem usage    Increment  Occurrences   Line Contents
 =============================================================
-    12    267.2 MiB    267.2 MiB           1   @profile(stream=fp)
-    13                                         def make_cuckoo(n):#instantiate structure
-    14    472.7 MiB    205.5 MiB           1       return Cuckoo(n, 3)
+    31     74.7 MiB     74.7 MiB           1   @profile(stream=fp)
+    32                                         def make_cuckoo(n):#instantiate structure
+    33     82.7 MiB      8.1 MiB           1       return Counting_Cuckoo(n, 3)
 
 
 Filename: memory_benchmark.py
 
 Line #    Mem usage    Increment  Occurrences   Line Contents
 =============================================================
-    17    282.7 MiB    282.7 MiB           1   @profile(stream=fp)
-    18                                         def cuckoo_insert_random_numbers(cuckoo,n): # insert until cuckoo is full
-    19                                             #insert a set of kmers into the cuckoo
-    20                                             
-    21    282.7 MiB      0.0 MiB      430001       for i in range(0,n):
-    22    282.7 MiB      0.0 MiB      430000           cuckoo.insert(str(random.getrandbits(64)))#test with random 64 bit ints
+    36     74.5 MiB     74.5 MiB           1   @profile(stream=fp)
+    37                                         def cuckoo_insert_random_numbers(cuckoo,n): # insert until cuckoo is full
+    38                                             #insert a set of kmers into the cuckoo
+    39                                             
+    40     74.5 MiB      0.0 MiB       43001       for i in range(0,n):
+    41                                                 # cuckoo.insert(str(random.getrandbits(64)))#test with random 64 bit ints
+    42     74.5 MiB      0.0 MiB       43000           cuckoo.insert(fa[i])
 
 
 Filename: memory_benchmark.py
 
 Line #    Mem usage    Increment  Occurrences   Line Contents
 =============================================================
-    12    282.7 MiB    282.7 MiB           1   @profile(stream=fp)
-    13                                         def make_cuckoo(n):#instantiate structure
-    14    472.7 MiB    190.0 MiB           1       return Cuckoo(n, 3)
+    31     74.5 MiB     74.5 MiB           1   @profile(stream=fp)
+    32                                         def make_cuckoo(n):#instantiate structure
+    33     82.8 MiB      8.3 MiB           1       return Counting_Cuckoo(n, 3)
 
 
 Filename: memory_benchmark.py
 
 Line #    Mem usage    Increment  Occurrences   Line Contents
 =============================================================
-    17    283.4 MiB    283.4 MiB           1   @profile(stream=fp)
-    18                                         def cuckoo_insert_random_numbers(cuckoo,n): # insert until cuckoo is full
-    19                                             #insert a set of kmers into the cuckoo
-    20                                             
-    21    283.4 MiB      0.0 MiB      440001       for i in range(0,n):
-    22    283.4 MiB      0.0 MiB      440000           cuckoo.insert(str(random.getrandbits(64)))#test with random 64 bit ints
+    36     74.8 MiB     74.8 MiB           1   @profile(stream=fp)
+    37                                         def cuckoo_insert_random_numbers(cuckoo,n): # insert until cuckoo is full
+    38                                             #insert a set of kmers into the cuckoo
+    39                                             
+    40     74.9 MiB      0.1 MiB       44001       for i in range(0,n):
+    41                                                 # cuckoo.insert(str(random.getrandbits(64)))#test with random 64 bit ints
+    42     74.9 MiB      0.0 MiB       44000           cuckoo.insert(fa[i])
 
 
 Filename: memory_benchmark.py
 
 Line #    Mem usage    Increment  Occurrences   Line Contents
 =============================================================
-    12    283.4 MiB    283.4 MiB           1   @profile(stream=fp)
-    13                                         def make_cuckoo(n):#instantiate structure
-    14    472.7 MiB    189.2 MiB           1       return Cuckoo(n, 3)
+    31     74.9 MiB     74.9 MiB           1   @profile(stream=fp)
+    32                                         def make_cuckoo(n):#instantiate structure
+    33     82.9 MiB      8.0 MiB           1       return Counting_Cuckoo(n, 3)
 
 
 Filename: memory_benchmark.py
 
 Line #    Mem usage    Increment  Occurrences   Line Contents
 =============================================================
-    17    282.9 MiB    282.9 MiB           1   @profile(stream=fp)
-    18                                         def cuckoo_insert_random_numbers(cuckoo,n): # insert until cuckoo is full
+    36     74.9 MiB     74.9 MiB           1   @profile(stream=fp)
+    37                                         def cuckoo_insert_random_numbers(cuckoo,n): # insert until cuckoo is full
+    38                                             #insert a set of kmers into the cuckoo
+    39                                             
+    40     74.9 MiB      0.0 MiB       45001       for i in range(0,n):
+    41                                                 # cuckoo.insert(str(random.getrandbits(64)))#test with random 64 bit ints
+    42     74.9 MiB      0.0 MiB       45000           cuckoo.insert(fa[i])
+
+
+Filename: memory_benchmark.py
+
+Line #    Mem usage    Increment  Occurrences   Line Contents
+=============================================================
+    31     74.9 MiB     74.9 MiB           1   @profile(stream=fp)
+    32                                         def make_cuckoo(n):#instantiate structure
+    33     82.9 MiB      8.0 MiB           1       return Counting_Cuckoo(n, 3)
+
+
+Filename: memory_benchmark.py
+
+Line #    Mem usage    Increment  Occurrences   Line Contents
+=============================================================
+    36     75.2 MiB     75.2 MiB           1   @profile(stream=fp)
+    37                                         def cuckoo_insert_random_numbers(cuckoo,n): # insert until cuckoo is full
+    38                                             #insert a set of kmers into the cuckoo
+    39                                             
+    40     75.2 MiB      0.0 MiB       46001       for i in range(0,n):
+    41                                                 # cuckoo.insert(str(random.getrandbits(64)))#test with random 64 bit ints
+    42     75.2 MiB      0.0 MiB       46000           cuckoo.insert(fa[i])
+
+
+Filename: memory_benchmark.py
+
+Line #    Mem usage    Increment  Occurrences   Line Contents
+=============================================================
+    31     75.2 MiB     75.2 MiB           1   @profile(stream=fp)
+    32                                         def make_cuckoo(n):#instantiate structure
+    33     83.0 MiB      7.8 MiB           1       return Counting_Cuckoo(n, 3)
+
+
+Filename: memory_benchmark.py
+
+Line #    Mem usage    Increment  Occurrences   Line Contents
+=============================================================
+    36     75.0 MiB     75.0 MiB           1   @profile(stream=fp)
+    37                                         def cuckoo_insert_random_numbers(cuckoo,n): # insert until cuckoo is full
+    38                                             #insert a set of kmers into the cuckoo
+    39                                             
+    40     75.0 MiB      0.0 MiB       47001       for i in range(0,n):
+    41                                                 # cuckoo.insert(str(random.getrandbits(64)))#test with random 64 bit ints
+    42     75.0 MiB      0.0 MiB       47000           cuckoo.insert(fa[i])
+
+
+Filename: memory_benchmark.py
+
+Line #    Mem usage    Increment  Occurrences   Line Contents
+=============================================================
+    31     75.0 MiB     75.0 MiB           1   @profile(stream=fp)
+    32                                         def make_cuckoo(n):#instantiate structure
+    33     83.0 MiB      8.1 MiB           1       return Counting_Cuckoo(n, 3)
+
+
+Filename: memory_benchmark.py
+
+Line #    Mem usage    Increment  Occurrences   Line Contents
+=============================================================
+    36     75.5 MiB     75.5 MiB           1   @profile(stream=fp)
+    37                                         def cuckoo_insert_random_numbers(cuckoo,n): # insert until cuckoo is full
+    38                                             #insert a set of kmers into the cuckoo
+    39                                             
+    40     75.5 MiB      0.0 MiB       48001       for i in range(0,n):
+    41                                                 # cuckoo.insert(str(random.getrandbits(64)))#test with random 64 bit ints
+    42     75.5 MiB      0.0 MiB       48000           cuckoo.insert(fa[i])
+
+
+Filename: memory_benchmark.py
+
+Line #    Mem usage    Increment  Occurrences   Line Contents
+=============================================================
+    31     75.5 MiB     75.5 MiB           1   @profile(stream=fp)
+    32                                         def make_cuckoo(n):#instantiate structure
+    33     83.1 MiB      7.6 MiB           1       return Counting_Cuckoo(n, 3)
+
+
+Filename: memory_benchmark.py
+
+Line #    Mem usage    Increment  Occurrences   Line Contents
+=============================================================
+    36     75.3 MiB     75.3 MiB           1   @profile(stream=fp)
+    37                                         def cuckoo_insert_random_numbers(cuckoo,n): # insert until cuckoo is full
+    38                                             #insert a set of kmers into the cuckoo
+    39                                             
+    40     75.4 MiB      0.0 MiB       49001       for i in range(0,n):
+    41                                                 # cuckoo.insert(str(random.getrandbits(64)))#test with random 64 bit ints
+    42     75.4 MiB      0.0 MiB       49000           cuckoo.insert(fa[i])
+
+
