@@ -39,3 +39,20 @@ def test_delete_true(cuckoo):
     cuckoo.insert("test")
     assert cuckoo.search("test")
     assert cuckoo.delete("test")
+
+
+def test_double_insert(cuckoo):
+    cuckoo.insert("test")
+    cuckoo.insert("test")
+    assert cuckoo.search("test") == 2
+
+
+def test_multiple_inserts(cuckoo):
+    counts = {"test": 4, "testing": 10, "let's test this": 5,
+              "lets test this some more": 20}
+    for k, v in counts.items():
+        for _ in range(v):
+            cuckoo.insert(k)
+    
+    for k, v in counts.items():
+        assert cuckoo.search(k) == v

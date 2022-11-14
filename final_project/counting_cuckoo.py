@@ -86,6 +86,7 @@ class Counting_Cuckoo:
                     self.table[i1][i] = (f, occ)
                     return True
                 elif self.table[i1][i][0] == f:
+                    occ = self.table[i1][i][1]
                     self.table[i1][i] = (f, 1 + occ)
                     return True
             for i in range(self.b):  # find empty bucket in i2
@@ -93,6 +94,7 @@ class Counting_Cuckoo:
                     self.table[i2][i] = (f, occ)
                     return True
                 elif self.table[i2][i][0] == f:
+                    occ = self.table[i2][i][1]
                     self.table[i2][i] = (f, 1 + occ)
                     return True
             else:
