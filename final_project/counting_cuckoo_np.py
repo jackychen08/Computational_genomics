@@ -23,8 +23,9 @@ class Counting_Cuckoo:
         self.f = self.fingerprintLength(4, fp)  # fingerprint length in bits
         self.m = self.nextPower(n / fp * 8)  # number of buckets
         self.fp = fp
-        self.table = np.empty((self.m, self.b), dtype="object")
+        self.table = np.empty((self.m, self.b), dtype=f"U{self.f}, f")
         self.max_tries = max_tries
+        print(self.f)
 
     def fingerprintLength(self, k, fp):
         """
@@ -82,7 +83,7 @@ class Counting_Cuckoo:
         occ = 1
         for _ in range(self.max_tries):
             for i in range(self.b):  # find empty bucket in i1
-                if self.table[i1][i] is None:
+                if self.table[i1][i][1] == 0:
                     self.table[i1][i] = (f, occ)
                     return True
                 elif self.table[i1][i][0] == f:
@@ -90,7 +91,7 @@ class Counting_Cuckoo:
                     self.table[i1][i] = (f, 1 + occ)
                     return True
             for i in range(self.b):  # find empty bucket in i2
-                if self.table[i2][i] is None:
+                if self.table[i2][i][1] == 0:
                     self.table[i2][i] = (f, occ)
                     return True
                 elif self.table[i2][i][0] == f:
@@ -123,10 +124,10 @@ class Counting_Cuckoo:
         b1 = self.table[i1]
         b2 = self.table[i2]
         for i in range(len(self.table[i1])):
-            if b1[i] is not None and b1[i][0] == f:
+            if b1[i][1] != 0 and b1[i][0] == f:
                 return b1[i][1]
         for i in range(len(self.table[i2])):
-            if b2[i] is not None and b2[i][0] == f:
+            if b2[i][1] != 0 and b2[i][0] == f:
                 return b2[i][1]
         return 0
 
@@ -144,11 +145,11 @@ class Counting_Cuckoo:
         b1 = self.table[i1]
         b2 = self.table[i2]
         for i in range(len(self.table[i1])):
-            if b1[i] is not None and b1[i][0] == f:
-                b1[i] = None
+            if b1[i][1] != 0 and b1[i][0] == f:
+                b1[i] = ('',0)
                 return True
         for i in range(len(self.table[i2])):
-            if b2[i] is not None and b2[i][0] == f:
-                b2[i] = None
+            if b2[i][1] != 0 and b2[i][0] == f:
+                b2[i] = ('',0)
                 return True
         return False
