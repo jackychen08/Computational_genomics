@@ -1,0 +1,27 @@
+{
+"apiVersion": "V2",
+"assemblies": [
+{
+  "files": [
+    {
+      "filePath": "assembly_data_report.jsonl",
+      "fileType": "DATA_REPORT"
+    }
+  ]
+},{
+  "accession": "GCF_000308975.1",
+  "files": [
+    {
+      "filePath": "GCF_000308975.1/genomic.gff",
+      "fileType": "GFF3"
+    },
+    {
+      "filePath": "GCF_000308975.1/cds_from_genomic.fna",
+      "fileType": "CDS_NUCLEOTIDE_FASTA"
+    },
+    {
+      "filePath": "GCF_000308975.1/protein.faa",
+      "fileType": "PROTEIN_FASTA"
+    }
+  ]
+}]}
