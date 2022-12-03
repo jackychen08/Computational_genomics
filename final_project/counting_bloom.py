@@ -10,13 +10,6 @@ class CBloomFilter():
     def __init__(self, n,Counter_size,bucket_size,no_hashfn):
         """
         Initializes Counting Bloom Filter
-
-        Args:
-            n (int): number of elements to store
-            fp (float): false positive rate
-        
-        Returns:
-            Counting Bloom Filter
         """
  
         self.n=n                # number of items to add
