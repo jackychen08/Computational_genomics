@@ -1,10 +1,16 @@
 import pytest
 from counting_cuckoo import Counting_Cuckoo
+from counting_cuckoo_params import Counting_Cuckoo_Params
 
 
 @pytest.fixture
 def cuckoo():
     return Counting_Cuckoo(500, 3)
+
+
+def test_cuckoo_params():
+    c = Counting_Cuckoo_Params(500, 3, t=5)
+    c.insert("test")
 
 
 def test_insert(cuckoo):
@@ -53,6 +59,6 @@ def test_multiple_inserts(cuckoo):
     for k, v in counts.items():
         for _ in range(v):
             cuckoo.insert(k)
-    
+
     for k, v in counts.items():
         assert cuckoo.search(k) == v
