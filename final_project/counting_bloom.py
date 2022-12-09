@@ -1,4 +1,4 @@
-# Source: https://www.geeksforgeeks.org/counting-bloom-filters-introduction-and-implementation/
+# Adapted from: https://www.geeksforgeeks.org/counting-bloom-filters-introduction-and-implementation/
 
 import math
 from fnvhash import fnv1a_32
@@ -42,7 +42,6 @@ class CBloomFilter():
             index = self.hash(item, i)
 
             cur_val = ba2int(self.bit_array[index])
-            print("cur_value during insert",cur_val)
             new_array = int2ba(cur_val+1, length=self.N)
 
             self.bit_array[index] = new_array
@@ -57,9 +56,6 @@ class CBloomFilter():
 
             index = self.hash(item, i)
             cur_val = ba2int(self.bit_array[index])
-            print("item",item)
-            print("cur_val",cur_val)
-            print("index",index) 
            
             if (not cur_val > 0):
                 return 0
@@ -67,19 +63,7 @@ class CBloomFilter():
             if cur_val < min_counter:
                 min_counter = cur_val
 
-        print("min_counter ",min_counter)
         return min_counter
-        # count = 0
-        # for i in range(self.k):
-        #     index = self.hash(item, i)
-        #     cur_val = ba2int(self.bit_array[index])
-        #     print(item)
-        #     print(cur_val)
-        #     print(index)       
-        #     if cur_val > 0:
-        #         count += 1
-
-        # return count
 
 
     def delete(self, item):
@@ -100,12 +84,4 @@ class CBloomFilter():
             print('Element Removed')
         else:
             print('Element is probably not exist')
-    
-    def get_count(self, item):
-        count = 0
-        for i in range(self.hash_count):
-            digest = mmh3.hash(item, i) % self.size
-            if self.bit_array[digest]:
-                count += 1
-        return count
 

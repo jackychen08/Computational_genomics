@@ -136,7 +136,7 @@ class CountingBloomFilter(BloomFilter):
             els_added,
         )
 
-    def add(self, key: KeyT, num_els: int = 1) -> int:  # type: ignore
+    def insert(self, key: KeyT, num_els: int = 1) -> int:  # type: ignore
         """Add the key to the Counting Bloom Filter
 
         Args:
@@ -168,7 +168,7 @@ class CountingBloomFilter(BloomFilter):
         self.elements_added = min(self.elements_added + num_els, UINT64_T_MAX)
         return min(vals)
 
-    def check(self, key: KeyT) -> int:  # type: ignore
+    def search(self, key: KeyT) -> int:  # type: ignore
         """Check if the key is likely in the Counting Bloom Filter
 
         Args:

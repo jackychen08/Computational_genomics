@@ -1,7 +1,7 @@
 import sys
 from counting_bloom import CBloomFilter
-from cuckoo import Cuckoo
 from counting_cuckoo_np import Counting_Cuckoo
+from countingbloom import CountingBloomFilter
 
 def parse_fastq(fh):
     """ Parse reads from a FASTQ filehandle.  For each read, we
@@ -54,7 +54,13 @@ with open(jellyfish_output) as jfo:
 jfo.close()
 
 counting_cuckoo_np = Counting_Cuckoo(len(kmer_table.keys()), 3)
-counting_bloom = CBloomFilter(len(kmer_table.keys()), 100, 4000, 2) 
+counting_bloom = CountingBloomFilter(len(kmer_table.keys()), 3)
+#est_elements (int): The number of estimated elements to be added
+# false_positive_rate (float): The desired false positive rate
+# hash_function (function): Hashing strategy function to use `hf(key, number)`
+
+
+#counting_bloom = CBloomFilter(len(kmer_table.keys()), 100, 4000, 2) 
     #self.n=n                # number of items to add
     # self.N=Counter_size     # size of each counter
     # self.m=bucket_size      # total number of the buckets
@@ -82,8 +88,8 @@ for k in kmer_table.keys():
         print("true:", true_frequency)
         print("CB:", counting_bloom.search(k))
     
-    # if jf_table[k] != true_frequency:
-    #     jellyfish_incorrect += 1
+    if jf_table[k] != true_frequency:
+        jellyfish_incorrect += 1
 
 total_kmers = len(kmer_table.keys())
 print(total_kmers)
