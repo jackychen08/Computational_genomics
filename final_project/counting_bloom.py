@@ -8,7 +8,7 @@ from bitarray.util import ba2int, int2ba
 
 class CBloomFilter():
 
-    def __init__(self, n, Counter_size=10, bucket_size=1, no_hashfn=2):
+    def __init__(self, n, Counter_size=10, bucket_size=4, no_hashfn=200):
         """
         Initializes Counting Bloom Filter
         """
@@ -25,6 +25,7 @@ class CBloomFilter():
             self.bit_array.append(count)
 
     def hash(self, item, seed):
+  
         return fnv1a_32(item.encode(), seed) % self.m
 
     def insert(self, item):
@@ -41,29 +42,45 @@ class CBloomFilter():
             index = self.hash(item, i)
 
             cur_val = ba2int(self.bit_array[index])
+            print("cur_value during insert",cur_val)
             new_array = int2ba(cur_val+1, length=self.N)
 
             self.bit_array[index] = new_array
-
     def search(self, item):
         """
-        Looks for item in bloom filter and returns its count
-
-        Args:
-            item (str): item to search for
-
-        Returns:
-            int: count of item in bloom filter
+        Looks for key in hash table
+@@ -56,34 +57,31 @@ def search(self, item):
         """
-        count = 0
+        
+        min_counter = float('inf')
         for i in range(self.k):
+
             index = self.hash(item, i)
             cur_val = ba2int(self.bit_array[index])
+            print("item",item)
+            print("cur_val",cur_val)
+            print("index",index) 
+           
+            if (not cur_val > 0):
+                return 0
 
-            if cur_val > 0:
-                count = count +1
-        print(count)
-        return count
+            if cur_val < min_counter:
+                min_counter = cur_val
+
+        print("min_counter ",min_counter)
+        return min_counter
+        # count = 0
+        # for i in range(self.k):
+        #     index = self.hash(item, i)
+        #     cur_val = ba2int(self.bit_array[index])
+        #     print(item)
+        #     print(cur_val)
+        #     print(index)       
+        #     if cur_val > 0:
+        #         count += 1
+
+        # return count
+
 
     def delete(self, item):
         """
