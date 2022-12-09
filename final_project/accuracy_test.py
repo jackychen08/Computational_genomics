@@ -1,7 +1,7 @@
 import sys
 from counting_bloom import CBloomFilter
 from cuckoo import Cuckoo
-from counting_cuckoo import Counting_Cuckoo
+from counting_cuckoo_np import Counting_Cuckoo
 
 def parse_fastq(fh):
     """ Parse reads from a FASTQ filehandle.  For each read, we
@@ -30,9 +30,10 @@ def parse_table(kmer_file):
         table[kmer] = int(frequency)
     return table
 
-fastq_file = sys.argv[1]
-kmer_file = sys.argv[2]
-n = int(sys.argv[3])
+fastq_file = sys.argv[1] #fastq file 
+kmer_file = sys.argv[2]  #kmer table of the data (obtained from kmer.py)
+k = int(sys.argv[3])     #k-mer length
+jellyfish_output = sys.argv[4]
 
 with open(fastq_file) as fq:
     fastq_data = parse_fastq(fq)
@@ -48,8 +49,11 @@ with open(kmer_file) as kf:
     kmer_table = parse_table(kf)
 kf.close()
 
-#(Just saw that the other files used 3 I also used that here) -> making the three types of filters
-counting_cuckoo = Counting_Cuckoo(n, 3)
+with open(jellyfish_output) as jfo:
+    jf_table = parse_table(jfo)
+jfo.close()
+
+counting_cuckoo_np = Counting_Cuckoo(len(kmer_table.keys()), 3)
 counting_bloom = CBloomFilter(len(kmer_table.keys()), 100, 4000, 2) 
     #self.n=n                # number of items to add
     # self.N=Counter_size     # size of each counter
@@ -58,29 +62,33 @@ counting_bloom = CBloomFilter(len(kmer_table.keys()), 100, 4000, 2)
 
 #Inserting data into the three filters:
 for read in reads:
-    for i in range(0, len(read) - n + 1):
-        kmer = read[i:i+n]
-        counting_cuckoo.insert(kmer)
+    for i in range(0, len(read) - k + 1):
+        kmer = read[i:i+k]
+        counting_cuckoo_np.insert(kmer)
         counting_bloom.insert(kmer)
 
-print("counting bloom bit array",counting_bloom.bit_array)
-
-counting_cuckoo_incorrect = 0
+counting_cuckoo_np_incorrect = 0
 counting_bloom_incorrect = 0
-correct = 0
+jellyfish_incorrect = 0
 for k in kmer_table.keys():
     true_frequency = kmer_table[k]
-    print("kmer:", k)
-    print("true freq:", true_frequency)
-    print("CB freq", counting_bloom.search(k))
-    print("\n")
-    
-    if counting_cuckoo.search(k) != true_frequency:
-        counting_cuckoo_incorrect += 1
+
+    if counting_cuckoo_np.search(k) != true_frequency:
+        counting_cuckoo_np_incorrect += 1
     
     if counting_bloom.search(k) != true_frequency:
         counting_bloom_incorrect += 1
+        print("kmer:", k)
+        print("true:", true_frequency)
+        print("CB:", counting_bloom.search(k))
+    
+    # if jf_table[k] != true_frequency:
+    #     jellyfish_incorrect += 1
 
+total_kmers = len(kmer_table.keys())
+print(total_kmers)
+print(counting_bloom_incorrect)
 
-print("counting_cuckoo incorrect",counting_cuckoo_incorrect)
-print("counting_bloom incorrect" ,counting_bloom_incorrect)
+print("counting_cuckoo_np incorrect", float(counting_cuckoo_np_incorrect/total_kmers))
+print("counting_bloom incorrect" ,float(counting_bloom_incorrect/total_kmers))
+print("jellyfish incorrect", float(jellyfish_incorrect/total_kmers))
