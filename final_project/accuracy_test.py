@@ -1,7 +1,6 @@
 import sys
 from counting_bloom import CBloomFilter
 from counting_cuckoo_np import Counting_Cuckoo
-from countingbloom import CountingBloomFilter
 
 def parse_fastq(fh):
     """ Parse reads from a FASTQ filehandle.  For each read, we
@@ -54,7 +53,7 @@ with open(jellyfish_output) as jfo:
 jfo.close()
 
 counting_cuckoo_np = Counting_Cuckoo(len(kmer_table.keys()), 3)
-counting_bloom = CountingBloomFilter(len(kmer_table.keys()), 3)
+counting_bloom = CBloomFilter(len(kmer_table.keys()), 3)
 #est_elements (int): The number of estimated elements to be added
 # false_positive_rate (float): The desired false positive rate
 # hash_function (function): Hashing strategy function to use `hf(key, number)`
@@ -74,27 +73,36 @@ for read in reads:
         counting_bloom.insert(kmer)
 
 counting_cuckoo_np_incorrect = 0
+counting_cuckoo_np_incorrect_mag = 0
 counting_bloom_incorrect = 0
+counting_bloom_incorrect_mag = 0
 jellyfish_incorrect = 0
+jellyfish_incorrect_mag = 0
 for k in kmer_table.keys():
     true_frequency = kmer_table[k]
 
     if counting_cuckoo_np.search(k) != true_frequency:
         counting_cuckoo_np_incorrect += 1
+        counting_cuckoo_np_incorrect_mag += abs(counting_cuckoo_np.search(k) - true_frequency)
     
     if counting_bloom.search(k) != true_frequency:
         counting_bloom_incorrect += 1
-        print("kmer:", k)
-        print("true:", true_frequency)
-        print("CB:", counting_bloom.search(k))
+        counting_bloom_incorrect_mag += abs(counting_bloom.search(k) - true_frequency)
     
     if jf_table[k] != true_frequency:
         jellyfish_incorrect += 1
+        jellyfish_incorrect_mag += abs(jf_table[k] - true_frequency)
 
 total_kmers = len(kmer_table.keys())
-print(total_kmers)
-print(counting_bloom_incorrect)
 
-print("counting_cuckoo_np incorrect", float(counting_cuckoo_np_incorrect/total_kmers))
-print("counting_bloom incorrect" ,float(counting_bloom_incorrect/total_kmers))
-print("jellyfish incorrect", float(jellyfish_incorrect/total_kmers))
+print("Percentage incorrect")
+print(" counting_cuckoo_np percentage incorrect:", float(counting_cuckoo_np_incorrect/total_kmers))
+print(" counting_bloom percentage incorrect:" ,float(counting_bloom_incorrect/total_kmers))
+print(" jellyfish incorrec:", float(jellyfish_incorrect/total_kmers))
+
+print("========================")
+
+print("Average error")
+print(" counting_cuckoo_np average error:", float(counting_cuckoo_np_incorrect_mag/total_kmers))
+print(" counting_bloom average error:" ,float(counting_bloom_incorrect_mag/total_kmers))
+print(" jellyfish average error:", float(jellyfish_incorrect_mag/total_kmers))

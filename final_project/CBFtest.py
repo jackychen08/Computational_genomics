@@ -5,7 +5,7 @@ from counting_bloom import CBloomFilter
 @pytest.fixture
 
 def cb():
-    return CBloomFilter(500, 3, 20, 2)
+    return CBloomFilter(500, 3)
 
 
 def test_insert(cb):
@@ -18,13 +18,6 @@ def test_insert_full(cb):
         assert cb.insert(str(i))
     for i in range(4364):
         assert cb.search(str(i))
-
-def test_insert_overfilled(cb):
-    try:
-        for i in range(8000):
-            cb.insert(str(i))
-    except Exception as e:
-        assert str(e) == "Reached max size"
 
 
 def test_not_there(cb):

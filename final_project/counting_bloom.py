@@ -1,62 +1,93 @@
-# Adapted from: https://www.geeksforgeeks.org/counting-bloom-filters-introduction-and-implementation/
+# Adapted from https://medium.com/analytics-vidhya/cbfs-44c66b1b4a78
 
 import math
-from fnvhash import fnv1a_32
-from bitarray import bitarray
-from bitarray.util import ba2int, int2ba
+import hashlib
 
+class CBloomFilter:  # Counting bloom filters class
 
-class CBloomFilter():
+    def __init__(self, expected_inputS, false_positiveP):
 
-    def __init__(self, n, Counter_size=10, bucket_size=4, no_hashfn=2):
-        """
-        Initializes Counting Bloom Filter
-        """
+        self.expected_inputS = expected_inputS  # The expected input size (n)
+        # The desired false positive proability (p)
+        self.false_positiveP = false_positiveP
 
-        self.n = n                # number of items to add
-        self.N = Counter_size     # size of each counter
-        self.m = bucket_size      # total number of the buckets
-        self.k = no_hashfn        # number of hash functions
+        # Finding the array size (m) from the function
+        self.size = round((self.expected_inputS *
+                             math.log(self.false_positiveP)) / (math.log(2))**2)
+        self.array = [0] * self.size  # Creating a list of zeros with size m
 
-        self.bit_array = []
-        for i in range(self.m):
-            count = bitarray(self.N)
-            count.setall(0)
-            self.bit_array.append(count)
+        # Finding the optimal number of hashing functions
+        self.hashing_n = round(
+            (self.size / self.expected_inputS) * math.log(2))
 
-    def hash(self, item, seed):
-  
-        return fnv1a_32(item.encode(), seed) % self.m
+        # Check if the number of hashing funcitons is greater than 6 or less than one
+        # So, the number of hashing functions stays in the bounderies between 1 and 6
+        if (self.hashing_n > 6):
+            self.hashing_n = 6
+        elif (self.hashing_n < 1):
+            self.hashing_n = 1
 
-    def insert(self, item):
-        """
-        Hashes data
+    def hashing(self, element):  # Define the hash functions
+        keys = []  # That list will the keys for the element
+        # Use the first hash function
+        hash_object1 = hashlib.md5(element.encode())
+        # Use the second hash function
+        hash_object2 = hashlib.sha1(element.encode())
+        # Use the third hash function
+        hash_object3 = hashlib.sha224(element.encode())
+        # Use the fourth hash function
+        hash_object4 = hashlib.sha256(element.encode())
+        # Use the fifth hash function
+        hash_object5 = hashlib.sha384(element.encode())
+        # Use the sixth hash function
+        hash_object6 = hashlib.sha512(element.encode())
+        # Append the keys into the list
+        keys.append(int(hash_object1.hexdigest(), 16))
+        keys.append(int(hash_object2.hexdigest(), 16))
+        keys.append(int(hash_object3.hexdigest(), 16))
+        keys.append(int(hash_object4.hexdigest(), 16))
+        keys.append(int(hash_object5.hexdigest(), 16))
+        keys.append(int(hash_object6.hexdigest(), 16))
+        return keys  # Return the list of keys
 
-        Args:
-            data (str): data to hash
+    def insert(self, element):  # use the Add method to add elements into the array
 
-        Returns:
-            int: hash value
-        """
-        for i in range(self.k):
-            index = self.hash(item, i)
+        keys = self.hashing(element)  # Find the hashing keys for the element
+        key = 0  # Reset the current key
 
-            cur_val = ba2int(self.bit_array[index])
-            new_array = int2ba(cur_val+1, length=self.N)
+        # Loop through the every key in the list up to the limit
+        for indx in range(self.hashing_n):
+            # Find the key moduls from the list size
+            key = int(math.fmod(keys[indx], self.size))
+            self.array[key] += 1  # Increase the counter value by one
+          
+        return True
 
-            self.bit_array[index] = new_array
-    def search(self, item):
-        """
-        Looks for key in hash table
-@@ -56,34 +57,31 @@ def search(self, item):
-        """
+    def delete(self, element):  # use the Remove method to remove elements from the lists
+
+        keys = self.hashing(element)  # Find the hashing keys for the element
+        key = 0  # Reset the current key
+
+        if (self.search(element) > 0):  # Check if that element in the list or not
+            # Loop through the every key in the list up to the limit
+            for indx in range(self.hashing_n):
+                # Find the key moduls from the list size
+                key = int(math.fmod(keys[indx], self.size))
+                # Decrease the counter value by one
+                self.array[key] = self.array[key] - 1
+            return True
+
+        else: 
+          return False
+        
+    def search(self, element): #Checks if an element is in the data structure or not
+        keys = self.hashing (element) #Find the keys for the elements 
+        key = 0 #Reset the current key
         
         min_counter = float('inf')
-        for i in range(self.k):
-
-            index = self.hash(item, i)
-            cur_val = ba2int(self.bit_array[index])
-           
+        for indx in range (self.hashing_n): #Loop through the every key in the list up to the limit
+            key = int(math.fmod(keys[indx], self.size))#Find the key moduls from the list size
+            cur_val = self.array[key]
             if (not cur_val > 0):
                 return 0
 
@@ -64,24 +95,3 @@ class CBloomFilter():
                 min_counter = cur_val
 
         return min_counter
-
-
-    def delete(self, item):
-        """
-        Deletes key from hash table
-
-        Args:
-            key (str): key to delete
-        """
-        if (self.search(item)):
-            for i in range(self.k):
-                index = self.hash(item, i)
-
-                cur_val = ba2int(self.bit_array[index])
-                new_array = int2ba(cur_val-1, length=self.N)
-                self.bit_array[index] = new_array
-
-            print('Element Removed')
-        else:
-            print('Element is probably not exist')
-
