@@ -25,7 +25,7 @@ class Counting_Cuckoo:
         self.fp = fp
         self.table = np.empty((self.m, self.b), dtype=f"U{self.f}, f")
         self.max_tries = max_tries
-        print(self.f)
+        # print(self.f)
 
     def fingerprintLength(self, k, fp):
         """

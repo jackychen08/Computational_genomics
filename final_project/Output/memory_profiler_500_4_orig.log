@@ -1,0 +1,9 @@
+Filename: /Users/jocelynhsu/Library/CloudStorage/OneDrive-JohnsHopkins/JHU4/Fall/Computational Genomics/Project/computational_genomics/final_project/memory_benchmark.py
+
+Line #    Mem usage    Increment  Occurrences   Line Contents
+=============================================================
+    67     66.0 MiB     66.0 MiB           1   @profile(stream=fp_orig)
+    68                                         def make_cuckoo_counting_orig(n):  # instantiate structure
+    69     91.5 MiB     25.5 MiB           1       return Cuckoo(n, 3, max_tries=max_tries, b=b)
+
+
