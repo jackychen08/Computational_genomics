@@ -16,7 +16,7 @@ class CBloomFilter():
         self.N=Counter_size     # size of each counter
         self.m=bucket_size      # total number of the buckets
         self.k=no_hashfn        # number of hash functions
- 
+
         self.bit_array = []
         for i in range(self.m):
             count=bitarray(self.N)
@@ -54,13 +54,17 @@ class CBloomFilter():
         Returns:
             True if key is found, False otherwise
         """
+        min = float('inf')
         for i in range(self.k):
             index = self.hash(item,i)
             cur_val=ba2int(self.bit_array[index])
- 
-            if(not cur_val>0):
-                return False
-        return True
+
+            if(not cur_val > 0):
+                return 0
+
+            if cur_val < min:
+                    min = cur_val
+        return min
        
     def delete(self,item):
         """
@@ -69,7 +73,7 @@ class CBloomFilter():
         Args:
             key (str): key to delete
         """
-        if(self.check(item)):
+        if(self.search(item)):
             for i in range(self.k):
                 index = self.hash(item,i)
                  
