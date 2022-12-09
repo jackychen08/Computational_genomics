@@ -1,11 +1,11 @@
 import pytest
 from counting_bloom import CBloomFilter
 
-
+ 
 @pytest.fixture
 
 def cb():
-    return CBloomFilter(500, 3)
+    return CBloomFilter(500, 3, 20, 2)
 
 
 def test_insert(cb):
@@ -36,3 +36,7 @@ def test_delete_false(cb):
 def test_delete_true(cb):
     cb.insert("test")
     assert cb.delete("test")
+
+
+# if __name__=="__main__": 
+#     test_delete_true(CBloomFilter(500, 3, 20, 2))

@@ -51,6 +51,6 @@ kmer_table = make_kmer_table(reads, K)
 output = open(outputfile, "w")
 for kmer in kmer_table.keys():
     frequency = kmer_table[kmer]
-    output.write(str(frequency) + "\n" + kmer + "\n")
+    output.write(">" + str(frequency) + "\n" + kmer + "\n")
 
 output.close()

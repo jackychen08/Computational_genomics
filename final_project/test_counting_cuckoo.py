@@ -53,6 +53,6 @@ def test_multiple_inserts(cuckoo):
     for k, v in counts.items():
         for _ in range(v):
             cuckoo.insert(k)
-    
+
     for k, v in counts.items():
         assert cuckoo.search(k) == v
