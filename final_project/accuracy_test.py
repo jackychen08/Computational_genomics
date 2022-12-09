@@ -50,7 +50,7 @@ kf.close()
 
 #(Just saw that the other files used 3 I also used that here) -> making the three types of filters
 counting_cuckoo = Counting_Cuckoo(n, 3)
-counting_bloom = CBloomFilter(len(kmer_table.keys()), 100, 3, 3) 
+counting_bloom = CBloomFilter(len(kmer_table.keys()), 100, 1, 2) 
     #self.n=n                # number of items to add
     # self.N=Counter_size     # size of each counter
     # self.m=bucket_size      # total number of the buckets
@@ -78,7 +78,7 @@ for k in kmer_table.keys():
     
     if counting_bloom.search(k) != true_frequency:
         counting_bloom_incorrect += 1
-        print("CB freq", counting_bloom_incorrect)
+        print("CB freq", counting_bloom.search(k))
         print("\n")
 
 print(counting_cuckoo_incorrect)

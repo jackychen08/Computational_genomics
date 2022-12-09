@@ -8,7 +8,7 @@ from bitarray.util import ba2int, int2ba
 
 class CBloomFilter():
 
-    def __init__(self, n, Counter_size=1, bucket_size=4, no_hashfn=2):
+    def __init__(self, n, Counter_size=10, bucket_size=1, no_hashfn=2):
         """
         Initializes Counting Bloom Filter
         """
@@ -47,25 +47,23 @@ class CBloomFilter():
 
     def search(self, item):
         """
-        Looks for key in hash table
+        Looks for item in bloom filter and returns its count
 
         Args:
-            key (str): key to search for
+            item (str): item to search for
 
         Returns:
-            True if key is found, False otherwise
+            int: count of item in bloom filter
         """
-        min = float('inf')
+        count = 0
         for i in range(self.k):
             index = self.hash(item, i)
             cur_val = ba2int(self.bit_array[index])
 
-            if (not cur_val > 0):
-                return 0
-
-            if cur_val < min:
-                min = cur_val
-        return min
+            if cur_val > 0:
+                count = count +1
+        print(count)
+        return count
 
     def delete(self, item):
         """
@@ -85,3 +83,12 @@ class CBloomFilter():
             print('Element Removed')
         else:
             print('Element is probably not exist')
+    
+    def get_count(self, item):
+        count = 0
+        for i in range(self.hash_count):
+            digest = mmh3.hash(item, i) % self.size
+            if self.bit_array[digest]:
+                count += 1
+        return count
+
