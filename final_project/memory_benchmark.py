@@ -1,7 +1,9 @@
 from memory_profiler import profile
 from execution_time import ExecutionTime
 import pytest
-from counting_cuckoo import Counting_Cuckoo
+import sys
+
+from counting_cuckoo_np import Counting_Cuckoo
 import random
 import numpy as np
 from memory_profiler import LogFile
@@ -25,15 +27,15 @@ def parse_fasta(fh):
 
     return fa
 
-with open('16mer.fasta') as fh:
+with open('data/mer_counts_dumps.fa') as fh:
     fa = parse_fasta(fh)
     
-@profile(stream=fp)
+@profile(stream=fp,precision=4)
 def make_cuckoo(n):#instantiate structure
     return Counting_Cuckoo(n, 3)
 
 
-@profile(stream=fp)
+@profile(stream=fp,precision=4)
 def cuckoo_insert_random_numbers(cuckoo,n): # insert until cuckoo is full
     #insert a set of kmers into the cuckoo
     
@@ -42,7 +44,7 @@ def cuckoo_insert_random_numbers(cuckoo,n): # insert until cuckoo is full
         cuckoo.insert(fa[i])
 
 
-for i in np.arange(0,50000,1000): #iterate over max size of cuckoo
+for i in np.arange(0,5000,500): #iterate over max size of cuckoo
     gc.collect()
     cuckoo = make_cuckoo(int(i)+1)
     cuckoo_insert_random_numbers(cuckoo,int(i))
