@@ -1,0 +1,9 @@
+Filename: /Users/jocelynhsu/Library/CloudStorage/OneDrive-JohnsHopkins/JHU4/Fall/Computational Genomics/Project/computational_genomics/final_project/memory_benchmark.py
+
+Line #    Mem usage    Increment  Occurrences   Line Contents
+=============================================================
+    55     89.5 MiB     89.5 MiB           1   @profile(stream=fp_bloom)
+    56                                         def make_cuckoo_bloom(n):  # instantiate structure
+    57     89.5 MiB      0.0 MiB           1       return CBloomFilter(n, b)
+
+
