@@ -25,18 +25,22 @@ def parse_fasta(fh):
 
     return fa
 
+<<<<<<< Updated upstream
 with open('data/mer_counts_dumps.fa') as fh:
+=======
+
+with open('16mer.fasta') as fh:
+>>>>>>> Stashed changes
     fa = parse_fasta(fh)
 
 e = ExecutionTime()
 n = sys.argv[1]
 
-# @e.timeit   
+# @e.timeit
 # @profile(stream=fp)
-def make_cuckoo(n):
-    return Counting_Cuckoo(n+1, 3)
 
 
+<<<<<<< Updated upstream
 # @profile(stream=fp)
 def cuckoo_insert_random_numbers(cuckoo,n):
     #insert a set of kmers into the cuckoo
@@ -62,3 +66,33 @@ print(n, end=",")
 print(e.logtime_data['search_wrapper']['average_time'],end = ",")
 print(e.logtime_data['cuckoo_insert_last_num']['total_time'],end = ",")
 print(e.logtime_data['cuckoo_insert_last_num']['average_time'])
+=======
+def make_cuckoo(n):
+    max_tries = [100, 250, 500, 1000, 2000, 5000]
+    b = [4, 8, 16, 32, 64, 128]
+    return Counting_Cuckoo(n+1, 3, max_tries=max_tries[0], b=b[0])
+
+
+@e.timeit
+# @profile(stream=fp)
+def cuckoo_insert_random_numbers(cuckoo, n):
+    # insert a set of kmers into the cuckoo
+    for i in range(0, n-1):
+        cuckoo.insert(fa[i])  # test with a lenght 16 kmer bit ints
+
+
+@e.timeit
+def search_wrapper(cuckoo, str_to_search):
+    cuckoo.search(str_to_search)
+
+
+cuckoo = make_cuckoo(int(n)+1)
+cuckoo_insert_random_numbers(cuckoo, int(n))
+search_wrapper(cuckoo, fa[0])
+
+
+print(n, end=",")
+print(e.logtime_data['search_wrapper']['total_time'], end=",")
+print(e.logtime_data['cuckoo_insert_random_numbers']['total_time'], end=",")
+print(e.logtime_data['cuckoo_insert_random_numbers']['average_time'])
+>>>>>>> Stashed changes
