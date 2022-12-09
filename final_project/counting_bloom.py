@@ -8,7 +8,7 @@ from bitarray.util import ba2int, int2ba
 
 class CBloomFilter():
 
-    def __init__(self, n, Counter_size=10, bucket_size=4, no_hashfn=200):
+    def __init__(self, n, Counter_size=10, bucket_size=4, no_hashfn=2):
         """
         Initializes Counting Bloom Filter
         """
