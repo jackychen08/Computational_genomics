@@ -7,6 +7,7 @@ import pytest
 from execution_time import ExecutionTime
 from memory_profiler import LogFile, profile
 from counting_cuckoo import Counting_Cuckoo
+from counting_bloom import CBloomFilter
 from cuckoo import Cuckoo
 import pandas as pd 
 
@@ -36,8 +37,8 @@ def make_cuckoo(n,max_tries,b,which_filter):
         return Counting_Cuckoo(n+1, 3,max_tries,b)
     elif which_filter == "cuckoo":
         return Cuckoo(n+1,3,max_tries,b)
-    else:
-        print("Filter not recognized")
+    elif which_filter =="counting_bloom":
+        return CBloomFilter(n+1,3)
 
 
 # @profile(stream=fp)
@@ -56,7 +57,7 @@ def search_wrapper(cuckoo,n):
     cuckoo.search(fa[i])#test with a lenght 16 kmer bit ints
 
 
-with open('data/mer_counts_dumps.fa') as fh:
+with open('data/16-mers.fa') as fh:
     fa = parse_fasta(fh)
 
 
@@ -67,21 +68,20 @@ which_filter = sys.argv[2] # options:counting_cuckoo, cuckoo, counting_bloom
 max_tries_index = int(sys.argv[3])#max_tries_index
 b_index = int(sys.argv[4]) # index for b array
 
+
 max_tries = [100, 250, 500, 1000, 2000, 5000] # default for max_tries = 500 
 b = [4, 8, 16, 32, 64, 128] # default for b is 8. 
 
 
-
-
-cuckoo = make_cuckoo(5000,max_tries[max_tries_index],b[b_index],which_filter) #TODO shouldnt this be 5000 for the first param
+cuckoo = make_cuckoo(11190,max_tries[max_tries_index],b[b_index],which_filter) #TODO shouldnt this be 5000 for the first param
 cuckoo_insert_random_numbers(cuckoo,int(n))
 for i in range(0,int(n)-2):
     search_wrapper(cuckoo,fa[i])
 
 print(which_filter,end=",")
+print(n, end=",")
 print(max_tries[max_tries_index],end=",")
 print(b[b_index],end=",")
-print(n, end=",")
 print(e.logtime_data['search_wrapper']['average_time'],end = ",")
 print(e.logtime_data['cuckoo_insert_last_num']['total_time'],end = ",")
 print(e.logtime_data['cuckoo_insert_last_num']['average_time'])
