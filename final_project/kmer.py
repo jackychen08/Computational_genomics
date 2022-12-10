@@ -32,8 +32,8 @@ def make_kmer_table(reads, k):
 
 
 fastqfile = sys.argv[1]
-K = int(sys.argv[2])
-outputfile = sys.argv[3]
+K = int(sys.argv[2])        #length of k-mer being made
+outputfile = sys.argv[3]    
 
 #fastq file processing
 with open(fastqfile) as fq:

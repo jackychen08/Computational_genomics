@@ -20,7 +20,7 @@ def parse_fastq(fh):
 
 def parse_table(kmer_file):
     """
-    Parses kmer_file to re-create the k-mer table; table[k-mer] = frequency
+    Parses kmer_file to re-create the k-mer table generated from kmer.py; table[k-mer] = frequency
     """
     table = {}
     while True:
@@ -35,7 +35,7 @@ def parse_table(kmer_file):
 fastq_file = sys.argv[1]        #fastq file 
 kmer_file = sys.argv[2]         #kmer table of the data (obtained from kmer.py)
 k = int(sys.argv[3])            #k-mer length
-jellyfish_output = sys.argv[4]  #
+jellyfish_output = sys.argv[4]  #jellyfish output file for same fastq and k-mer length
 
 with open(fastq_file) as fq:
     fastq_data = parse_fastq(fq)
@@ -71,6 +71,8 @@ counting_bloom_incorrect = 0
 counting_bloom_incorrect_mag = 0
 jellyfish_incorrect = 0
 jellyfish_incorrect_mag = 0
+
+
 for k in kmer_table.keys():
     true_frequency = kmer_table[k]
 
