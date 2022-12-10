@@ -1,7 +1,6 @@
 import sys
 from counting_bloom import CBloomFilter
-from cuckoo import Cuckoo
-from counting_cuckoo import Counting_Cuckoo
+from counting_cuckoo_np import Counting_Cuckoo
 
 def parse_fastq(fh):
     """ Parse reads from a FASTQ filehandle.  For each read, we
@@ -18,8 +17,11 @@ def parse_fastq(fh):
         reads.append((name, seq, qual))
     return reads
 
-#parses kmer_file to re-create the k-mer table -> table[k-mer] = frequency
+
 def parse_table(kmer_file):
+    """
+    Parses kmer_file to re-create the k-mer table; table[k-mer] = frequency
+    """
     table = {}
     while True:
         first_line = kmer_file.readline()
@@ -30,9 +32,10 @@ def parse_table(kmer_file):
         table[kmer] = int(frequency)
     return table
 
-fastq_file = sys.argv[1]
-kmer_file = sys.argv[2]
-n = int(sys.argv[3])
+fastq_file = sys.argv[1]        #fastq file 
+kmer_file = sys.argv[2]         #kmer table of the data (obtained from kmer.py)
+k = int(sys.argv[3])            #k-mer length
+jellyfish_output = sys.argv[4]  #
 
 with open(fastq_file) as fq:
     fastq_data = parse_fastq(fq)
@@ -48,39 +51,51 @@ with open(kmer_file) as kf:
     kmer_table = parse_table(kf)
 kf.close()
 
-#(Just saw that the other files used 3 I also used that here) -> making the three types of filters
-counting_cuckoo = Counting_Cuckoo(n, 3)
-counting_bloom = CBloomFilter(len(kmer_table.keys()), 100, 4000, 2) 
-    #self.n=n                # number of items to add
-    # self.N=Counter_size     # size of each counter
-    # self.m=bucket_size      # total number of the buckets
-    # self.k=no_hashfn        # number of hash functions
+with open(jellyfish_output) as jfo:
+    jf_table = parse_table(jfo)
+jfo.close()
 
-#Inserting data into the three filters:
+counting_cuckoo_np = Counting_Cuckoo(len(kmer_table.keys()), 3)
+counting_bloom = CBloomFilter(len(kmer_table.keys()), 3)
+
+#Inserting data into the two filters:
 for read in reads:
-    for i in range(0, len(read) - n + 1):
-        kmer = read[i:i+n]
-        counting_cuckoo.insert(kmer)
+    for i in range(0, len(read) - k + 1):
+        kmer = read[i:i+k]
+        counting_cuckoo_np.insert(kmer)
         counting_bloom.insert(kmer)
 
-print("counting bloom bit array",counting_bloom.bit_array)
-
-counting_cuckoo_incorrect = 0
+counting_cuckoo_np_incorrect = 0
+counting_cuckoo_np_incorrect_mag = 0
 counting_bloom_incorrect = 0
-correct = 0
+counting_bloom_incorrect_mag = 0
+jellyfish_incorrect = 0
+jellyfish_incorrect_mag = 0
 for k in kmer_table.keys():
     true_frequency = kmer_table[k]
-    print("kmer:", k)
-    print("true freq:", true_frequency)
-    print("CB freq", counting_bloom.search(k))
-    print("\n")
-    
-    if counting_cuckoo.search(k) != true_frequency:
-        counting_cuckoo_incorrect += 1
+
+    if counting_cuckoo_np.search(k) != true_frequency:
+        counting_cuckoo_np_incorrect += 1
+        counting_cuckoo_np_incorrect_mag += abs(counting_cuckoo_np.search(k) - true_frequency)
     
     if counting_bloom.search(k) != true_frequency:
         counting_bloom_incorrect += 1
+        counting_bloom_incorrect_mag += abs(counting_bloom.search(k) - true_frequency)
+    
+    if jf_table[k] != true_frequency:
+        jellyfish_incorrect += 1
+        jellyfish_incorrect_mag += abs(jf_table[k] - true_frequency)
 
+total_kmers = len(kmer_table.keys())
 
-print("counting_cuckoo incorrect",counting_cuckoo_incorrect)
-print("counting_bloom incorrect" ,counting_bloom_incorrect)
+print("Percentage incorrect")
+print(" counting_cuckoo_np percentage incorrect:", float(counting_cuckoo_np_incorrect/total_kmers))
+print(" counting_bloom percentage incorrect:" ,float(counting_bloom_incorrect/total_kmers))
+print(" jellyfish incorrect:", float(jellyfish_incorrect/total_kmers))
+
+print("========================")
+
+print("Average error")
+print(" counting_cuckoo_np average error:", float(counting_cuckoo_np_incorrect_mag/total_kmers))
+print(" counting_bloom average error:" ,float(counting_bloom_incorrect_mag/total_kmers))
+print(" jellyfish average error:", float(jellyfish_incorrect_mag/total_kmers))
