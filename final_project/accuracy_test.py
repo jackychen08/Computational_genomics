@@ -17,8 +17,11 @@ def parse_fastq(fh):
         reads.append((name, seq, qual))
     return reads
 
-#parses kmer_file to re-create the k-mer table -> table[k-mer] = frequency
+
 def parse_table(kmer_file):
+    """
+    Parses kmer_file to re-create the k-mer table; table[k-mer] = frequency
+    """
     table = {}
     while True:
         first_line = kmer_file.readline()
@@ -29,10 +32,10 @@ def parse_table(kmer_file):
         table[kmer] = int(frequency)
     return table
 
-fastq_file = sys.argv[1] #fastq file 
-kmer_file = sys.argv[2]  #kmer table of the data (obtained from kmer.py)
-k = int(sys.argv[3])     #k-mer length
-jellyfish_output = sys.argv[4]
+fastq_file = sys.argv[1]        #fastq file 
+kmer_file = sys.argv[2]         #kmer table of the data (obtained from kmer.py)
+k = int(sys.argv[3])            #k-mer length
+jellyfish_output = sys.argv[4]  #
 
 with open(fastq_file) as fq:
     fastq_data = parse_fastq(fq)
@@ -54,18 +57,8 @@ jfo.close()
 
 counting_cuckoo_np = Counting_Cuckoo(len(kmer_table.keys()), 3)
 counting_bloom = CBloomFilter(len(kmer_table.keys()), 3)
-#est_elements (int): The number of estimated elements to be added
-# false_positive_rate (float): The desired false positive rate
-# hash_function (function): Hashing strategy function to use `hf(key, number)`
 
-
-#counting_bloom = CBloomFilter(len(kmer_table.keys()), 100, 4000, 2) 
-    #self.n=n                # number of items to add
-    # self.N=Counter_size     # size of each counter
-    # self.m=bucket_size      # total number of the buckets
-    # self.k=no_hashfn        # number of hash functions
-
-#Inserting data into the three filters:
+#Inserting data into the two filters:
 for read in reads:
     for i in range(0, len(read) - k + 1):
         kmer = read[i:i+k]
@@ -98,7 +91,7 @@ total_kmers = len(kmer_table.keys())
 print("Percentage incorrect")
 print(" counting_cuckoo_np percentage incorrect:", float(counting_cuckoo_np_incorrect/total_kmers))
 print(" counting_bloom percentage incorrect:" ,float(counting_bloom_incorrect/total_kmers))
-print(" jellyfish incorrec:", float(jellyfish_incorrect/total_kmers))
+print(" jellyfish incorrect:", float(jellyfish_incorrect/total_kmers))
 
 print("========================")
 
